@@ -12,6 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('accounts/', include('accounts.urls')),
+    path('tourpackages/', include('tourpackages.urls')),
 
     path('reset-password', PasswordResetView.as_view(), name='password_reset'),
     path('reset-password/done', PasswordResetDoneView.as_view(), name='password_reset_done'),

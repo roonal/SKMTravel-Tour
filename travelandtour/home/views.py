@@ -23,5 +23,3 @@ def package_details_final(request, pk):
                }
     return render(request, 'user/package_details_final.html', context)
 
-
-

@@ -1,18 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from .models import Booking
+from .models import EducationalTour, Booking
 from django_countries.data import COUNTRIES
 
 
-class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
+class EducationalTourForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        model = EducationalTour
+        fields = ('name', 'address', 'email', 'number', 'organization_name', 'location', 'total_people', 'destination', 'total_days')
 
 
 class BookingForm(forms.ModelForm):
@@ -28,5 +22,3 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ('name', 'email', 'phone_number', 'address', 'airport_pickup', 'adults',
                   'children', 'package_category', 'payment_mode')
-
-
