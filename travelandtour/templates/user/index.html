@@ -1,0 +1,317 @@
+{% extends 'shared/header-footer.html' %}
+
+{% load static %}
+{% block content %}
+<!-- slider section  -->
+			<section class="slider">
+				<ul class="slider-carousel" id="slider-carousel">
+					<li class="slider_image-3 ">
+						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
+						<h3>Find the perfect vacation </h3>
+						<a href="#" class="primary-bg btn1">View Packages</a> <a href="#" class="secondary-sky-blue-bg btn2" >Why us ?</a>
+					</li>
+					<li class="slider_image-4 ">
+						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
+						<h3>Come & explore new places with us</h3>
+						<a href="#" class="primary-bg btn1">View Packages</a>
+					</li>
+					<li class="slider_image-1 ">
+						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
+						<h3>Make your tour amazing with us</h3>
+						<a href="#" class="secondary-sky-blue-bg btn2">Request for group tour</a>
+					</li>
+					<li class="slider_image-2 ">
+						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
+						<h3>Cost friendly packages on your way </h3>
+						<a href="#" class="primary-bg btn1">View Packages</a>
+					</li>
+				</ul>
+				<ul class="slider-pager">
+					<li><a herf="#"><i class="fa fa-circle" aria-hidden="true"></i></a></li>
+					<li><a herf="#"><i class="fa fa-circle"></i></a></li>
+					<li><a herf="#"><i class="fa fa-circle"></i></a></li>
+					<li><a herf="#"><i class="fa fa-circle"></i></a></li>
+				</ul>
+
+			</section>
+			<!-- new section for services --->
+			<section class="services section-padding">
+				<div class="container">
+					<div class="services-header">
+						<h1>Services</h1>
+						<p>Dear Travellers, Namaste and Welcome,</p>
+						<p>Shree Krishsna Mankamana Travels & Tours (p.) Ltd. a leading online travel agency in Nepal. A Destination Management Company in Nepal, We are one of key travel agents in Nepal that brings tours of "Incredible Nepal", the country that has mystified the world for centuries. Your tour to Nepal, a colorfully diverse country, will enchant you with the beauty of its Culture, Mountain and Nature. These tours to Nepal will enrich you with its culture, heritage, wildlife, flora & fauna, folklore, festivals, spirituality, philosophy and at the same time surprise you with its modernity. The multicountry tour will help to explore different places of neighbouring country India. It offers variety of services:</p>
+					</div>
+					<div class="services-content">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-4 items">
+									<p><i class="fa fa-laptop"></i></p>
+									<h3>Ticketing</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. </p>
+								</div>
+								<div class="col-md-4 items">
+									<p><i class="fa fa-tasks" aria-hidden="true"></i></p>
+									<h3>Tour Operator</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. </p>
+								</div>
+								<div class="col-md-4 items">
+									<p><i class="fa fa-cc-visa"></i></p>
+									<h3>Visa Services</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. </p>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-4 items">
+									<p><i class="fa fa-cutlery" aria-hidden="true"></i></p>
+									<h3>Hotel Booking</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. </p>
+								</div>
+								<div class="col-md-4 items">
+									<p><i class="fa fa-car"></i></p>
+									<h3>Vehicle Service</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. </p>
+								</div>
+								<div class="col-md-4 items">
+									<p><i class="fa fa-globe"></i></p>
+									<h3>Unlimited Support</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. </p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- new section for portfolio --->
+			<section class="portfolio section-padding" data-stellar-background-ratio="2">
+				<div class="portfolio-header">
+					<h1 class="white">Featured Packages</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. <br />Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
+				</div>
+				<!-- portfolio carousel ------->
+				<div class="container">
+					<div class="row">
+						<ul class="portfolio-carousel ">
+                            {% for package in packages %}
+							<li>
+								<div class="inner-content ">
+									<img src="{{ package.img.url}}">
+									<div class="overlay-content">
+										<h3>{{package.package_name}}</h3>
+										<h5>{{package.total_days}}</h5>
+										<h4>Start From:Rs.{{package.price}}</h4>
+										<p><a href="{% url 'package_details' pk=package.package_id %}"><button type="button" class="btn btn-outline-primary">View Details</button></a></p>
+<!--										<p><a href="#" >Click Here</a>for details</p>-->
+									</div>
+								</div>
+							</li>
+                            {% endfor %}
+						</ul>
+						<ul class="portfolio-nav">
+							<li id="prev">&lt;</li>
+							<li id="next">&gt;</li>
+						</ul>
+					</div>
+				</div>
+
+			</section>
+			<!-- new section for team --->
+			<section class="team section-padding">
+				<div class="team-header">
+					<h1 >Best Selling Packages</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. <br />Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
+				</div>
+				<!-- portfolio carousel ------->
+				<div class="container">
+					<div class="card-deck">
+						<ul class="team-carousel">
+							{% for package in packages %}
+							<li>
+								<div class="card shadow cardset1">
+									<div class="card-body">
+										<div class="img-section">
+											<img class="card-img-top img-fluid" src="{{ package.img.url}}" alt="Card image cap">
+										</div>
+										<h3 class="card-title"><h3>{{package.package_name}}</h3>
+										<a href="{% url 'package_details' pk=package.package_id %}" class="btn btn-primary">View Details</a>
+
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<ul class="team-nav">
+						<li id="team-prev">&lt;</li>
+						<li id="team-next">&gt;</li>
+					</ul>
+				</div>
+
+
+
+
+			</section>
+			<!-- new section for blogs --->
+			<section class="blogs section-padding">
+				<div class="blogs-header center">
+					<h1 >Recent Post from Blogs</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. <br />Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<img src="{% static 'img/carou4.jpg' %}" alt="post1" class="img-responsive">
+							<h3><a href="#" classs="secondary-sky-blue">Annapurna Treeking</a></h3>
+							<p class="posted-by"> <i>by</i> <span class="primary bold">John</span> <i>on</i> <b>12 Dec 2019</b></p>
+							<p class="post-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat.
+							</p>
+						</div>
+						<div class="col-md-4">
+							<img src="{% static 'img/carou4.jpg' %}" alt="post1" class="img-responsive">
+							<h3><a href="#" classs="secondary-sky-blue">Taplejung Visit</a></h3>
+							<p class="posted-by"> <i>by</i> <span class="primary bold">John</span> <i>on</i> <b>12 Dec 2019</b></p>
+							<p class="post-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat.
+							</p>
+						</div>
+						<div class="col-md-4">
+							<img src="{% static 'img/carou4.jpg' %}" alt="post1" class="img-responsive">
+							<h3><a href="#" classs="secondary-sky-blue">Paragliding at Pokhara</a></h3>
+							<p class="posted-by"> <i>by</i> <span class="primary bold">John</span> <i>on</i> <b>12 Dec 2019</b></p>
+							<p class="post-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- end slider section -->
+
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Guest Testimonials</h4>
+						<ul class="last-slider-carousel" id="last-slider">
+							<li class="slider-content">
+
+								<p>1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+									consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur.</p>
+							</li>
+
+							<li class="slider-content">
+								<p>2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat.</p>
+							</li>
+
+							<li class="slider-content">
+								<p>3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat.</p>
+							</li>
+
+							<li class="slider-content">
+								<p>4 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. </p>
+							</li>
+						</ul>
+						<ul class="last-slider-pager">
+							<li><a herf="#"><i class="fa fa-circle" aria-hidden="true"></i></a></li>
+							<li><a herf="#"><i class="fa fa-circle"></i></a></li>
+							<li><a herf="#"><i class="fa fa-circle"></i></a></li>
+							<li><a herf="#"><i class="fa fa-circle"></i></a></li>
+						</ul>
+					</div>
+
+					<div class="col-sm-6">
+						<h4>Why SKM ?</h4>
+						<aside id="secondary">
+
+							<!-- .widget STARTS -->
+							<div class="widget">
+								<div class="widget-inner" id="accordion1">
+									<h4 class="widget-title">10 Years of Experience <i class="fa fa-chevron-right"></i></h4>
+									<div id="first" class="widget-content">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua.</p>
+									</div>
+								</div>
+							</div>
+							<!-- .widget ENDS -->
+							<!-- .widget STARTS -->
+							<div class="widget">
+								<div class="widget-inner" id="accordion2">
+									<h4 class="widget-title">Over 150 holiday Packages <i class="fa fa-chevron-right"></i></h4>
+									<div id="second" class="widget-content">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua.</p>
+									</div>
+								</div>
+							</div>
+							<!-- .widget ENDS -->
+							<!-- .widget STARTS -->
+							<div class="widget">
+								<div class="widget-inner" id="accordion3">
+									<h4 class="widget-title" >Safety First <i class="fa fa-chevron-right"></i></h4>
+									<div id="third" class="widget-content" data-parent="#accordion">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua.</p>
+									</div>
+								</div>
+							</div>
+							<!-- .widget ENDS -->
+							<div class="widget">
+								<div class="widget-inner" id="accordion4">
+									<h4 class="widget-title">Best Customer Service Experience <i class="fa fa-chevron-right"></i></h4>
+									<div id="fourth" class="widget-content">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua.</p>
+									</div>
+								</div>
+							</div>
+							<!-- .widget ENDS -->
+
+						</aside>
+					</div>
+				</div>
+			</div>
+{% endblock %}

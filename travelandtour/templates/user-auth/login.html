@@ -1,0 +1,21 @@
+{% extends 'shared/header-footer.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class=""row>
+            <h2>Login</h2>
+    <form method="post">
+        {% for message in messages %}
+       <p style="color: red">{{message}}</p>
+    {% endfor %}
+
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+        <a href="{% url 'password_reset' %}">Forget Password</a>
+    </form>
+        </div>
+    </div>
+
+
+{% endblock %}

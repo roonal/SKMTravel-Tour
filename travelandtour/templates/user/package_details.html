@@ -1,0 +1,44 @@
+{% extends 'shared/header-footer.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {% for package in packages %}
+     <h4>Package Details</h4>
+            <img src="{{ package.img.url}}"><br>
+        {{package.package_name}}<br>
+        {{package.start_date}}<br>
+        {{package.end_date}}<br>
+        {{package.total_days}}<br>
+
+     {% endfor %}
+
+     <h1>Package Difficulty</h1>
+     {% for diff in difficulty %}
+
+            {{diff.difficulty}}<br>
+     {% endfor %}
+
+     <h1>Package Destinations</h1>
+    {% for dest in destination %}
+            {{dest.destination}}<br>
+     {% endfor %}
+
+
+<h1>Activities Travel Mode</h1>
+    {% for travel in travel_mode %}
+
+            {{travel.plan_id.days}}<br>
+            {{travel.plan_id}}<br>
+            {{travel.activities_id}}<br>
+            {{travel.travel_mode}}<br>
+            {{travel.plan_id.difficulty_id}}<br>
+     {% endfor %}
+         </div>
+    </div>
+
+<a href="{% url 'booking_form'  %}" class="btn btn-primary">Book Now</a>
+
+
+{% endblock %}

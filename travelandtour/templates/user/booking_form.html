@@ -1,0 +1,178 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Package Booking</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href=" {% static 'css/booking_form.css' %}" />
+</head>
+
+<div id="booking" class="booking-section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<form action="{% url 'booking-request' %}" method="POST">
+							 {% csrf_token %}
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Full Name</span>
+										<input class="form-control" type="text" placeholder="Name" name="full_name">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Email</span>
+										<input class="form-control" type="Email" placeholder="@email" name="email">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Phone Number</span>
+										<input class="form-control" type="text" placeholder="Phone Number" name="number">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Address</span>
+										<input class="form-control" type="text" placeholder="Full Address" name="address">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-5">
+									<div class="form-group">
+										<span class="form-label">Nationality</span>
+										<select class="form-control" name="nationality">
+											<option>Nepal</option>
+											<option>India</option>
+											<option>USA</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<span class="form-label">Adults (12+)</span>
+										<select class="form-control" name="adults">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<span class="form-label">Children (0-12)</span>
+										<select class="form-control" name="children">
+											<option>0</option>
+											<option>1</option>
+											<option>2</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Arrival Date</span>
+										<input class="form-control" type="date" required name="arrival_date">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Departure Date</span>
+										<input class="form-control" type="date" required name="departure_date">
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="form-group">
+								<div class="form-checkbox">
+									<span class="form-label" >Airpot Pickup</span>
+									<label for="yes">
+										<input type="radio" id="yes" name="pickup">
+										<span></span>Yes
+									</label>
+									<label for="no">
+										<input type="radio" id="no" name="pickup">
+										<span></span>No
+									</label>
+
+								</div>
+							</div>
+								</div>
+
+
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Airline</span>
+										<input class="form-control" type="text" required name="airline">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Flight Number</span>
+										<input class="form-control" type="text" required name="flight_number">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Arrival Time</span>
+										<input class="form-control" type="Time" required name="arrival_time">
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row">
+								<div class="col-md-5">
+									<div class="form-group">
+										<span class="form-label">Package Category</span>
+										<select class="form-control" name="package_category">
+											<option>Luxury</option>
+											<option>Comfort</option>
+											<option>Standard</option>
+											<option>Budget</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="form-group">
+										<span class="form-label">Mode Of Payment</span>
+										<select class="form-control" name="payment_mode">
+											<option>Cash</option>
+											<option>Credit Card</option>
+											<option>Bank Transfer</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-btn">
+										<button class="submit-btn" type="submit">Book Package</button>
+									</div>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

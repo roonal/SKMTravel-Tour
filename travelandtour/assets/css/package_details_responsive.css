@@ -1,0 +1,57 @@
+.slicknav_menu{
+	display: none;
+}
+
+
+@media screen and (max-width: 992px){
+
+/** navigation bar for responsive **/
+	
+	#menu{
+		display: none;
+	}
+
+	.slicknav_menu{
+		display: inline-block;
+		position: fixed;
+		background: rgba(0,0,0,0);
+		z-index: 1000;
+		right: 0px;
+		margin-top: -112px;
+	}
+
+	.slicknav_btn{
+		background-color: #e743c3;
+		margin: 35px 30px 0 0;
+	}
+
+	.slicknav_nav{
+		background: #34495e;
+		width: 200px;
+	}
+
+	.slicknav_nav li{
+		margin: 0;
+		padding: 0;
+		height: 3em;
+		line-height: 3em;
+		width: 200px;
+		border-bottom: 1px solid #2e4155;
+		border-top: 1px solid #3d5267;
+		text-align: center;
+	}
+
+	.slicknav_nav li a{
+		margin: 0;
+		padding: 0;
+	}
+
+	.slicknav_nav li a:hover{
+		color: #e74c3c;
+		background-color: rgba(0,0,0,0);
+	}
+
+	/** footer responsive styles **/
+	footer{
+		text-align: center;
+	}

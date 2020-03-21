@@ -1,0 +1,130 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+
+{% block content %}
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/package_details.css' %}">
+
+    <section class="package_header">
+		<div class="container">
+             {% for package in packages %}
+			<div class="row head-content">
+				<div class="col-sm-8 package_image">
+					<img src="{{ package.img.url}}">
+
+					</div>
+
+				<div class="col-sm-4 package_button">
+					<h2>Trip Facts</h2>
+					<p> Duration: <h4> {{package.total_days}} </h4></p>
+                    <p> Package Difficulty: <h4> {{package.difficulty}}</h4></p>
+                    <p> Start From:Rs. <h4>  {{package.price}}</h4></p>
+
+                    <a href="{% url 'booking_form'  %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
+                    <a href="#"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
+				</div>
+			</div>
+        </div>
+        <div class="package_heading">
+			<h1>{{package.package_name}} </h1>
+		</div>
+
+		<div class="package-content">
+			<ul class="nav nav-pills nav-justified tab-head">
+				<li class="nav-item active"><a href="#overview" class="active" data-toggle="tab">OVERVIEW</a></li>
+				<li class="nav-item"><a href="#itinerary" data-toggle="tab">ITINERARY</a></li>
+				<li class="nav-item"><a href="#trip-facts" data-toggle="tab">TRIP FACTS</a></li>
+				<li class="nav-item"><a href="#cost-info" data-toggle="tab">COST INFO</a></li>
+				<li class="nav-item"><a href="#reviews" data-toggle="tab">REVIEWS</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="overview" class="tab-pane active">
+					<h3>Details About {{package.package_name}} </h3>
+					<p>{{package.overview}}</p>
+					<p><h4>Package Destination:</h4></p>
+						<p>{% for dest in destination %}
+							{{dest.destination}}
+						 {% endfor %}</p>
+
+				</div>
+				<div id="itinerary" class="tab-pane ">
+					<p>{% for act in activities %}
+							<h4>{{act.plan_id.day}}:
+							{{act.plan_id.travel_details}}<br></h4>
+							<h5>Travel Details:</h5>{{act.activities_id.activities}}<br>
+							<h5>Travel Mode:</h5>{{act.activities_id.travel_mode}}<br>
+							<h5>Difficulty Level:</h5>{{act.plan_id.difficulty_level}}<br>
+
+						{% empty %}  <!-- if no activities is present for particular packages then -->
+							{% for plan in package_plan %}
+								<h4>{{plan.day}}:
+								{{plan.travel_details}}<br></h4>
+							 {% endfor %}
+						{% endfor %}
+
+					</p>
+				</div>
+				<div id="trip-facts" class="tab-pane">
+					<p>
+						<h5>Duration :</h5>{{package.total_days}}<br>
+						<h5>Best Seasons :</h5>{{package.best_season}}<br>
+						<h5>Difficulty :</h5>{{package.difficulty}}<br>
+						<h5>Maximum Altitude :</h5>{{package.max_altitude}}<br>
+						<h5>Guider Details :</h5>{{package.staff_id.experience}}<br>
+					</p>
+				</div>
+				<div id="cost-info" class="tab-pane">
+					<p>
+
+						<div class="row">
+
+						<div class="col-sm-6">
+							<h4>Cost Included</h4>
+							{% for cost in cost_info %}
+								{% if cost.cost_type == "cost_included" %}
+									<i class="fa fa-check-circle"></i> {{cost.cost_details}}<br/>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<div class="col-sm-6">
+							<h4>Cost Excluded</h4>
+							{% for cost in cost_info %}
+								{% if cost.cost_type == "cost_excluded" %}
+
+									<i class="fa fa-times-circle"></i> {{ cost.cost_details}}<br/>
+								{% endif %}
+							{% endfor %}
+						</div>
+
+
+						</div>
+
+					</p>
+				</div>
+				<div id="reviews" class="tab-pane">
+                    <div class="row">
+                        {% for rev in review %}
+                        <div class="col-sm-6">
+                            <div class="border">
+                                <div class="border-content">
+                                    <h5>Review By:</h5>{{rev.review_by}}<br/>
+                                    <h5>Address:</h5>{{rev.address}}<br/>
+                                    <h5>Review Date:</h5>{{rev.review_date}}<br/>
+                                    {{rev.review}}<br/>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+				</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+
+
+
+	</section>
+{% endblock %}

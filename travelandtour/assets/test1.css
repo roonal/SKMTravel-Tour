@@ -1,0 +1,49 @@
+.slider_image-1
+{
+	background:url('img/slider1.jpg');
+	background-size: 100% 100%;
+}
+
+.slider_image-2
+{
+	background:url('img/slider2.jpg');
+	background-size: 100% 100%;
+}
+
+.slider_image-3
+{
+	background:url('img/slider3.jpg');
+	background-size: 100% 100%;
+}
+
+.slider_image-4
+{
+	background:url('img/slider4.jpg');
+	background-size: 100% 100%;
+}
+
+.portfolio
+{
+	background: url('img/bg1.jpg');
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	color: #fff;
+}
+
+.last-slider-carousel{
+	background: url('img/trek1.jpg');
+	background-size: cover;
+
+}
+
+.btn {
+  background-color: DodgerBlue;
+  }
+
+#booking {
+	background-image: url('img/background.jpg');
+}
+
+.booking-form {
+	background-image: url('img/background.jpg');
+}

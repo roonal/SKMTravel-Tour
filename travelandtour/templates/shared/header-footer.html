@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- this is for responsive design -->
+		<!-- css style -->
+		<link rel="shortcut icon" href="{% static 'img/favicon.png' %}"/>
+
+		<link rel="stylesheet" type="text/css" href=" {% static 'css/test.css' %}">
+		<link rel="stylesheet" type="text/css" href=" {% static 'test1.css' %}">
+		<link rel="stylesheet" type="text/css" href=" {% static 'footer1.css' %}">
+		<link rel="stylesheet" type="text/css" href=" {% static 'css/reset.css' %}">
+		<link rel="stylesheet" type="text/css" href=" {% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href=" {% static 'fontawesome/css/fontawesome.min.css' %}"> <!-- font icons css -->
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700&display=swap" rel="stylesheet"> <!-- raleway font -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+		<script type="text/javascript" src=" {% static 'js/respond.js' %}"></script> <!-- enable responsive design for those browser which does not support CSS3 -->
+		<script type="text/javascript" src=" {% static 'js/jquery.min.js' %}"></script> <!-- jquery plugin reference  -->
+		<!-- <script language="JavaScript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script> -->
+		<script type="text/javascript" src=" {% static 'js/caroufredsel.js' %}"></script> <!-- jquery plugin caroufredsel slider
+	-->
+
+
+	</head>
+	<body id="main">
+		<header>
+			<div class="container">
+
+				<nav class="navbar navbar-expand-lg navbar-light navbar1">
+					<a class="logo " href="#"><img src="{% static 'img/skm_logo.png' %}" alt="logo" class="img-responsive">Shree Krishna Mankamana Travel and Tour</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown1" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown1">
+						<ul class="navbar-nav mr-auto">
+						</ul>
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+									<p>24/7 Support</p> <p>+9865521445</p></a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#"><i class="fa fa-envelope"></i><p>Email</p> <p>sales@skm.com</p></a>
+								</li>
+								<li class="nav-item">
+
+									{% if user.is_authenticated %}
+										<button class="btn"><a href="{% url 'profile' %}"><i class="fa fa-user-circle"></i>Profile</a></button>
+										<p><button class="btn"><a href="{% url 'logout' %}"><i class="fa fa-sign-in"></i>Logout</a></button></p>
+									{% else %}
+										<button class="btn"><a href="{% url 'register' %}"><i class="fa fa-user-plus"></i>Sign Up</a></button>
+										<p><button class="btn"><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i>Login</a></button></p>
+									{% endif %}
+								</li>
+
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<!-- second nav-->
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar2" id="myHeader">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown2">
+						<ul class="navbar-nav justify-content-center">
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'index' %}">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'packages' %}">Packages</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Educational Tour</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Activities
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Mountain Flight</a>
+									<a class="dropdown-item" href="#">Paragliding</a>
+									<a class="dropdown-item" href="#">Helicopter Tours</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Travel Guide</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Blog</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Company Profile</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Gallery</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+
+		{% block content %}
+
+	{% endblock %}
+
+	<div class="footer-wrapper">
+				<div class="top-img"></div>
+				<div class="container-fluid">
+					<div class="footer-social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-skype"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-wechat"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+					</div>
+					<div class="footer-mid-part">
+						<div class="row">
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<div class="footer-section-one">
+									<div class="footer-heading"><h2>Contact Us</h2></div>
+									<div class="footer-contact-box">
+										<div class="footer-contact-icon"><i class="fa fa-map-marker"></i></div>
+										<div class="footer-contact-text">
+											<p>Address: Province No. 1, Itahari-Sunsari, Nepal</p>
+										</div>
+										<div class="clr"></div>
+									</div>
+									<div class="footer-contact-box">
+										<div class="footer-contact-icon"><i class="fa fa-phone"></i></div>
+										<div class="footer-contact-text">
+											<p><a href="tel:+012-3456-789">025-582752</a></p>
+										</div>
+										<div class="clr"></div>
+									</div>
+									<div class="footer-contact-box">
+										<div class="footer-contact-icon"><i class="fa fa-fax"></i></div>
+										<div class="footer-contact-text">
+											<p><a href="fax:+012-3456-789">+012-3456-789</a></p>
+										</div>
+										<div class="clr"></div>
+									</div>
+									<div class="footer-contact-box">
+										<div class="footer-contact-icon"><i class="fa fa-envelope"></i></div>
+										<div class="footer-contact-text">
+											<p><a href="mailto:info@learningtutorialpoingt.com">info@skmtravelandtour.com</a></p>
+										</div>
+										<div class="clr"></div>
+									</div>
+									<div class="footer-contact-box">
+										<div class="footer-contact-icon"><i class="fa fa-globe"></i></div>
+										<div class="footer-contact-text">
+											<p><a href="http://www.learningtutorialpoint.com">http://www.skmtravel&tour.com</a></p>
+										</div>
+										<div class="clr"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<div class="footer-section-two">
+									<div class="footer-heading"><h2>Quick Link</h2></div>
+									<div class="footer-link">
+										<ul>
+											<li><a href="#">Home</a></li>
+											<li><a href="#">About Us</a></li>
+											<li><a href="#">Web Services</a></li>
+											<li><a href="#">Graphic Design</a></li>
+											<li><a href="#">Web Marketing</a></li>
+											<li><a href="#">Services</a></li>
+											<li><a href="#">Training</a></li>
+											<li><a href="#">Contact Us</a></li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<div class="footer-section-two">
+									<div class="footer-heading"><h2>Our Services</h2></div>
+									<div class="footer-link">
+										<ul>
+											<li><a href="#">Linux Hosting</a></li>
+											<li><a href="#">Windows Hosting</a></li>
+											<li><a href="#">Domain Registration</a></li>
+											<li><a href="#">SEO Promotion</a></li>
+											<li><a href="#">Our Plans</a></li>
+											<li><a href="#">Latest Offers</a></li>
+											<li><a href="#">Sitemap</a></li>
+											<li><a href="#">Website Maintenance</a></li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<div class="footer-section-three">
+									<div class="footer-heading"><h2>Get in touch</h2></div>
+									<div class="footer-form">
+										<form method="post" action="#">
+											<div class="footer-form-box">
+												<input type="text" class="footer-form-style" placeholder="Name">
+											</div>
+											<div class="footer-form-box">
+												<input type="text" class="footer-form-style" placeholder="Email">
+											</div>
+											<div class="footer-form-box">
+												<input type="text" class="footer-form-style" placeholder="Phone Number">
+											</div>
+											<div class="footer-form-box">
+												<input type="submit" class="footer-form-submit-style" value="SUBMIT" ">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="footer-bottom">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6">
+								<p>We Are Affiliated With</p>
+								<div class="foot-images">
+									<img src="{% static 'img/ntb.jpg' %}">
+									<img src="{% static 'img/nepal-goverment.png' %}">
+									<img src="{% static 'img/taan.png' %}">
+									<img src="{% static 'img/nma.png' %}">
+									<img src="{% static 'img/carou4.jpg' %}">
+									<img src="{% static 'img/nata.png' %}">
+								</div>
+
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6">
+								<p>Payment Mode We Accepts</p>
+								<div class="foot-images">
+									<img src="{% static 'img/visa.png' %}">
+									<img src="{% static 'img/paypal.png' %}">
+									<img src="{% static 'img/master.png' %}">
+
+								</div>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<p>Copyright 2018 Learning Tutorial Point All Rights Reserved</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="ScrollToTop"><i class="fa fa-chevron-up"></i></a>
+			<!-- javascript reference ------>
+			<script type="text/javascript" src=" {% static 'js/bootstrap.min.js' %}"></script>
+			<script type="text/javascript" src=" {% static 'js/test.js' %}"></script>
+		</body>
+	</html>
