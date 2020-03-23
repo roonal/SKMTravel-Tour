@@ -86,11 +86,17 @@
 									<a class="dropdown-item" href="#">Helicopter Tours</a>
 								</div>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Travel Guide</a>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Travel Guide
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+									<a class="dropdown-item" href="{% url 'about-nepal' %}">About Nepal</a>
+									<a class="dropdown-item" href="{% url 'about-visa' %}">Nepal Visa Information</a>
+								</div>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Blog</a>
+								<a class="nav-link" href="{% url 'blog' %}">Blog</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#">Company Profile</a>

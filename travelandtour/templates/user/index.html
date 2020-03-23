@@ -8,22 +8,22 @@
 					<li class="slider_image-3 ">
 						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
 						<h3>Find the perfect vacation </h3>
-						<a href="#" class="primary-bg btn1">View Packages</a> <a href="#" class="secondary-sky-blue-bg btn2" >Why us ?</a>
+						<a href="{% url 'packages' %}" class="primary-bg btn1">View Packages</a> <a href="#" class="secondary-sky-blue-bg btn2" >Why us ?</a>
 					</li>
 					<li class="slider_image-4 ">
 						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
 						<h3>Come & explore new places with us</h3>
-						<a href="#" class="primary-bg btn1">View Packages</a>
+						<a href="{% url 'packages' %}" class="primary-bg btn1">View Packages</a>
 					</li>
 					<li class="slider_image-1 ">
 						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
 						<h3>Make your tour amazing with us</h3>
-						<a href="#" class="secondary-sky-blue-bg btn2">Request for group tour</a>
+						<a href="{% url 'educational_tour' %}" class="secondary-sky-blue-bg btn2">Request for group tour</a>
 					</li>
 					<li class="slider_image-2 ">
 						<h1>Welcome To Best <span class="primary"> Travel & Tour Company</span></h1>
 						<h3>Cost friendly packages on your way </h3>
-						<a href="#" class="primary-bg btn1">View Packages</a>
+						<a href="{% url 'packages' %}" class="primary-bg btn1">View Packages</a>
 					</li>
 				</ul>
 				<ul class="slider-pager">
@@ -177,39 +177,44 @@
 				</div>
 				<div class="container">
 					<div class="row">
-						<div class="col-md-4">
-							<img src="{% static 'img/carou4.jpg' %}" alt="post1" class="img-responsive">
-							<h3><a href="#" classs="secondary-sky-blue">Annapurna Treeking</a></h3>
-							<p class="posted-by"> <i>by</i> <span class="primary bold">John</span> <i>on</i> <b>12 Dec 2019</b></p>
-							<p class="post-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat.
-							</p>
-						</div>
-						<div class="col-md-4">
-							<img src="{% static 'img/carou4.jpg' %}" alt="post1" class="img-responsive">
-							<h3><a href="#" classs="secondary-sky-blue">Taplejung Visit</a></h3>
-							<p class="posted-by"> <i>by</i> <span class="primary bold">John</span> <i>on</i> <b>12 Dec 2019</b></p>
-							<p class="post-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat.
-							</p>
-						</div>
-						<div class="col-md-4">
-							<img src="{% static 'img/carou4.jpg' %}" alt="post1" class="img-responsive">
-							<h3><a href="#" classs="secondary-sky-blue">Paragliding at Pokhara</a></h3>
-							<p class="posted-by"> <i>by</i> <span class="primary bold">John</span> <i>on</i> <b>12 Dec 2019</b></p>
-							<p class="post-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat.
-							</p>
-						</div>
+						{% for blog in blogs %}
+							{% if blog.blog_name == "Everest Region Trek" %}
+							<div class="col-md-4" >
+								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
+								<h3><a href="{% url 'blog-details' pk=blog.id %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
+								<p class="post-content">
+									{{blog.blog_Details|safe|truncatewords:"36"|linebreaks}}
+									<a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+								</p>
+
+							</div>
+							{% endif %}
+
+						{% if blog.blog_name == "Dharan" %}
+							<div class="col-md-4" >
+								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
+								<h3><a href="{% url 'blog-details' pk=blog.id %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
+								<p class="post-content">
+									{{blog.blog_Details|safe|truncatewords:"40"|linebreaks}}
+									<a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+								</p>
+							</div>
+							{% endif %}
+
+						{% if blog.blog_name == "Pokhara" %}
+							<div class="col-md-4" >
+								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
+								<h3><a href="{% url 'blog-details' pk=blog.id %}"  class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
+								<p class="post-content">
+									{{blog.blog_Details|safe|truncatewords:"40"|linebreaks}}
+									<a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+								</p>
+							</div>
+							{% endif %}
+						{% endfor %}
 					</div>
 				</div>
 			</section>

@@ -1,0 +1,36 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .blogs-header{
+        margin-top:30px;
+        margin-bottom:30px;
+    }
+    .blog-field{
+        margin-bottom:30px;
+    }
+</style>
+
+<section class="blogs section-padding">
+    <div class="blogs-header center">
+        <h1 >Recent Travel Blogs</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-md-4 blog-field" >
+                    <img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
+                    <h3><a href="{% url 'blog-details' pk=blog.id %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+                    <p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
+                    <p class="post-content">
+                        {{blog.blog_Details|safe|truncatewords:"36"|linebreaks}}
+                        <a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

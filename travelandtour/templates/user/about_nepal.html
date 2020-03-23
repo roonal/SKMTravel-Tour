@@ -1,0 +1,113 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+
+{% block content %}
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/about_nepalvisa.css' %}">
+
+    <section class="header">
+		<div class="container">
+			<div class="row head-content">
+				<div class="col-sm-12 image">
+					<img src="{% static 'img/about-nepal.png' %}">
+
+					</div>
+			</div>
+        </div>
+        <div class="heading">
+			<h1>About Nepal </h1>
+		</div>
+
+		<div class="container">
+		{% for about in aboutnepal %}
+			{% if about.about == "about_nepal" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Geography:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "geography" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Himalayan Region:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "himalayan" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Hilly Region:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "hilly" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Terai Region:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "terai" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>People:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "people" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Religion:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "religion" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>History:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "history" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Art and Culture:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "art" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>Climate:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "climate" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+
+		<div class="heading">
+			<h1>Getting To Nepal </h1>
+			<h5>By Air:</h5>
+			<p>Nepal Airlines is the national flag carrier of Nepal with flights to / from Delhi,
+				Kuala Lumpur, Dubai, Bangkok, Doha and Hong Kong Other international airlines operating from / to Kathmandu are:</p>
+		</div>
+
+		{% for about in aboutnepal %}
+			{% if about.about == "air" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		<h4>By Land:</h4>
+		{% for about in aboutnepal %}
+			{% if about.about == "land" %}
+                <p>{{about.details}}</p>
+			{% endif %}
+		{% endfor %}
+
+		</div>
+	</section>
+{% endblock %}

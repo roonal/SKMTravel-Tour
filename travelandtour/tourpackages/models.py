@@ -62,3 +62,40 @@ class Booking(models.Model):
 
     def __str__(self):
         return self.name
+
+
+ABOUT_NEPAL = (
+   ('about_nepal', 'About Nepal Intro'),
+   ('geography', 'Geography'),
+   ('himalayan', 'Himalayan Region'),
+   ('hilly', 'Hilly Region'),
+   ('terai', 'Terai Region'),
+   ('people', 'People'),
+   ('religion', 'Religion'),
+   ('history', 'History'),
+   ('art', 'Art and Culture'),
+   ('climate', 'Climate'),
+   ('air', 'By Air'),
+   ('land', 'By Land'),
+
+
+)
+
+
+class AboutNepal(models.Model):
+    id = models.AutoField(primary_key=True)
+    details = models.TextField()
+    about = models.CharField(choices=ABOUT_NEPAL, max_length=128)
+
+
+class Blog(models.Model):
+    id = models.AutoField(primary_key=True)
+    blog_name = models.CharField(max_length=100)
+    bolg_by = models.CharField(max_length=50)
+    blog_date = models.DateField()
+    blog_Details = models.TextField()
+    img = models.ImageField(upload_to='Package_Images/')
+
+    def __str__(self):
+        return self.blog_name
+

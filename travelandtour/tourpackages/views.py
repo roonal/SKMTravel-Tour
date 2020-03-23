@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import EducationalTourForm, BookingForm
+from .models import AboutNepal, Blog
+from home.models import Packages
+
 
 # Create your views here.
 
@@ -29,4 +32,24 @@ def package_booking(request):
 
 
 def packages(request):
-    return render(request, 'user/packages.html')
+    context = {'packages': Packages.objects.all()}
+    return render(request, 'user/packages.html', context)
+
+
+def about_nepal(request):
+    context = {'aboutnepal': AboutNepal.objects.all()}
+    return render(request, 'user/about_nepal.html', context)
+
+
+def about_visa(request):
+    return render(request, 'user/about_visa.html')
+
+
+def blog(request):
+    context = {'blogs': Blog.objects.all()}
+    return render(request, 'user/blog.html', context)
+
+
+def blog_details(request, pk):
+    context = {'blogs': Blog.objects.filter(id=pk)}
+    return render(request, 'user/blog_details.html', context)

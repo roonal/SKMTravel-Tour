@@ -1,0 +1,36 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+
+{% block content %}
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/about_nepalvisa.css' %}">
+
+{% for blog in blogs %}
+    <section class="header">
+		<div class="container">
+			<div class="row head-content">
+				<div class="col-sm-12 image">
+					<img src="{{ blog.img.url}}">
+
+					</div>
+			</div>
+        </div>
+        <div class="heading">
+			<h1>{{blog.blog_name}}</h1>
+		</div>
+
+		<div class="container">
+            <div class="row blog-field">
+                <div class="col-sm-5">
+                <h4>Blog By: {{blog.bolg_by}}</h4>
+                </div>
+                 <div class="col-sm-5">
+                    <h4>Published Date: {{blog.blog_date}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                {{blog.blog_Details}}
+            </div>
+		</div>
+	</section>
+    {% endfor %}
+{% endblock %}

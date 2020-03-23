@@ -40,43 +40,20 @@
                 <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
                     <div class="row">
                         	<div class="card-deck">
-	                        	<div class="col-sm-4">
-		                        		<div class="card ">
-									    <img src="{% static 'img/carou4.jpg' %}" class="card-img-top" alt="...">
-									    <div class="card-body">
-                                            <a href="#">
-									      <h5 class="card-title">Card title </h5>
-                                            </a>
-									    </div>
-									  </div>
-		                        </div>
-	                        	<div class="col-sm-4">
-	                        		<div class="card">
-									    <img src="{% static 'img/carou2.jpg' %}" class="card-img-top" alt="...">
-									    <div class="card-body">
-									      <h5 class="card-title">Card title</h5>
-
-									    </div>
-									  </div>
-	                        	</div>
-	                        	<div class="col-sm-4">
-	                        		<div class="card">
-									    <img src="{% static 'img/carou3.jpg' %}" class="card-img-top" alt="...">
-									    <div class="card-body">
-									      <h5 class="card-title">Card title</h5>
-
-									    </div>
-									  </div>
-	                        	</div>
-                                <div class="col-sm-4">
-	                        		<div class="card">
-									    <img src="{% static 'img/carou3.jpg' %}" class="card-img-top" alt="...">
-									    <div class="card-body">
-									      <h5 class="card-title">Card title</h5>
-
-									    </div>
-									  </div>
-	                        	</div>
+                                 {% for package in packages %}
+                                    {% if package.package_type.package_type == "Eastern Nepal Packages" %}
+                                        <div class="col-sm-4">
+                                                <div class="card ">
+                                                <img src="{{ package.img.url}}" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <a href="{% url 'package_details' pk=package.package_id %}">
+                                                  <h5 class="card-title">{{package.package_name}}</h5>
+                                                    </a>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
 	                        </div>
                         </div>
                 </div>
@@ -84,35 +61,87 @@
                 <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" >
                      <div class="row">
                         	<div class="card-deck">
-	                        	<div class="col-sm-4">
-		                        		<div class="card ">
-									    <img src="{% static 'img/carou4.jpg' %}" class="card-img-top" alt="...">
-									    <div class="card-body">
-                                            <a href="#">
-									      <h5 class="card-title">Card title </h5></a>
-									    </div>
-
-									  </div>
-		                        </div>
+	                        	{% for package in packages %}
+                                    {% if package.package_type.package_type == "Whole Nepal Tour" %}
+                                        <div class="col-sm-4">
+                                                <div class="card ">
+                                                <img src="{{ package.img.url}}" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <a href="{% url 'package_details' pk=package.package_id %}">
+                                                  <h5 class="card-title">{{package.package_name}}</h5>
+                                                    </a>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                      </div>
 
                 </div>
 
                     <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" >
-                        <h4 class="font-italic mb-4">Reviews</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <div class="row">
+                        	<div class="card-deck">
+	                        	{% for package in packages %}
+                                    {% if package.package_type.package_type == "Trekking" %}
+                                        <div class="col-sm-4">
+                                                <div class="card ">
+                                                <img src="{{ package.img.url}}" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <a href="{% url 'package_details' pk=package.package_id %}">
+                                                  <h5 class="card-title">{{package.package_name}}</h5>
+                                                    </a>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                     </div>
                     </div>
 
                     <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                        <h4 class="font-italic mb-4">Confirm booking</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <div class="row">
+                        	<div class="card-deck">
+	                        	{% for package in packages %}
+                                    {% if package.package_type.package_type == "Nepal-India Tour" %}
+                                        <div class="col-sm-4">
+                                                <div class="card ">
+                                                <img src="{{ package.img.url}}" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <a href="{% url 'package_details' pk=package.package_id %}">
+                                                  <h5 class="card-title">{{package.package_name}}</h5>
+                                                    </a>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                     </div>
                     </div>
 
                       <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-adventure" role="tabpanel" aria-labelledby="v-pills-adventure-tab">
-                        <h4 class="font-italic mb-4">Adventure Trip</h4>
-                        <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
+                        <div class="row">
+                        	<div class="card-deck">
+	                        	{% for package in packages %}
+                                    {% if package.package_type.package_type == "Adventure Trip" %}
+                                        <div class="col-sm-4">
+                                                <div class="card ">
+                                                <img src="{{ package.img.url}}" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <a href="{% url 'package_details' pk=package.package_id %}">
+                                                  <h5 class="card-title">{{package.package_name}}</h5>
+                                                    </a>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                     </div>
+                      </div>
 
 
                 </div>

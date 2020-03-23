@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Packages, PackageActivities, PackagePlan, Destination,PackageCostInfo, PackageReview
+from tourpackages.models import Blog
 
 
 def index(request):
-    context = {'packages': Packages.objects.all()}
+    context = {'packages': Packages.objects.all(), 'blogs': Blog.objects.all()}
     return render(request, 'user/index.html', context)
 
 
@@ -22,4 +23,6 @@ def package_details_final(request, pk):
 
                }
     return render(request, 'user/package_details_final.html', context)
+
+
 
