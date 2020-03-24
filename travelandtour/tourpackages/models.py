@@ -99,3 +99,19 @@ class Blog(models.Model):
     def __str__(self):
         return self.blog_name
 
+
+IMAGE_CATEGORY = (
+   ('adventure', 'Adventure'),
+   ('trekking', 'Trekking'),
+   ('activities', 'Activities'),
+    ('cultural', 'Cultural')
+)
+
+
+class Gallery(models.Model):
+    id = models.AutoField(primary_key=True)
+    image_category = models.CharField(choices=IMAGE_CATEGORY, max_length=128)
+    img = models.ImageField(upload_to='Package_Images/')
+
+    def __str__(self):
+        return self.image_category

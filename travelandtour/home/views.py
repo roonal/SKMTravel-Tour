@@ -14,13 +14,13 @@ def package_booking(request):
 
 
 def package_details_final(request, pk):
-    context = {'packages': Packages.objects.filter(package_id=pk),
+    context = {'tourpackages': Packages.objects.filter(package_id=pk),
                'destination': Destination.objects.filter(package_destination=pk),
                'package_plan': PackagePlan.objects.filter(package_id=pk),
                'activities': PackageActivities.objects.filter(package_id=pk),
                'cost_info': PackageCostInfo.objects.filter(package_cost=pk),
                'review': PackageReview.objects.filter(package_id=pk),
-
+               'packages': Packages.objects.all(),
                }
     return render(request, 'user/package_details_final.html', context)
 

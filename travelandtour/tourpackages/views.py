@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import EducationalTourForm, BookingForm
-from .models import AboutNepal, Blog
+from .models import AboutNepal, Blog, Gallery
 from home.models import Packages
 
 
@@ -16,7 +16,8 @@ def educational_tour(request):
             return redirect('index')
     else:
         form = EducationalTourForm()
-    return render(request, 'user/educational_tour.html', {'form': form})
+    context = {'form': form, 'packages': Packages.objects.all()}
+    return render(request, 'user/educational_tour.html', context)
 
 
 def package_booking(request):
@@ -28,7 +29,8 @@ def package_booking(request):
             return redirect('index')
     else:
         form = BookingForm()
-    return render(request, 'user/test_form.html', {'form': form})
+    context = {'form': form, 'packages': Packages.objects.all()}
+    return render(request, 'user/test_form.html', context)
 
 
 def packages(request):
@@ -37,19 +39,33 @@ def packages(request):
 
 
 def about_nepal(request):
-    context = {'aboutnepal': AboutNepal.objects.all()}
+    context = {'aboutnepal': AboutNepal.objects.all(), 'packages': Packages.objects.all()}
     return render(request, 'user/about_nepal.html', context)
 
 
 def about_visa(request):
-    return render(request, 'user/about_visa.html')
+    context = {'packages': Packages.objects.all()}
+    return render(request, 'user/about_visa.html', context)
 
 
 def blog(request):
-    context = {'blogs': Blog.objects.all()}
+    context = {'blogs': Blog.objects.all(), 'packages': Packages.objects.all()}
     return render(request, 'user/blog.html', context)
 
 
 def blog_details(request, pk):
-    context = {'blogs': Blog.objects.filter(id=pk)}
+    context = {'blogs': Blog.objects.filter(id=pk), 'packages': Packages.objects.all()}
     return render(request, 'user/blog_details.html', context)
+
+
+def about_company(request):
+    return render(request, 'user/about_company.html')
+
+
+def company_profile(request):
+    return render(request, 'user/company_profile.html')
+
+
+def photo_gallery(request):
+    context = {'gallery': Gallery.objects.all(), 'packages': Packages.objects.all()}
+    return render(request, 'user/gallery.html', context)

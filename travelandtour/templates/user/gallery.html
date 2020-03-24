@@ -1,0 +1,36 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+
+{% block content %}
+  <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/glightbox.css' %}">"
+  <link rel="stylesheet" href="{% static 'css/gallery-style.css' %}">
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="gallery-title">Photo Gallery</h1>
+        <div class="text-center">
+          <button class="btn btn-default filter-button" id="all" onclick="call(this.id)">All</button>
+          <button class="btn btn-default filter-button" id="adventure" onclick="call(this.id)">Adventure</button>
+          <button class="btn btn-default filter-button" id="trekking" onclick="call(this.id)">Trekking</button>
+          <button class="btn btn-default filter-button" id="activities" onclick="call(this.id)">Activities</button>
+          <button class="btn btn-default filter-button" id="cultural" onclick="call(this.id)">Cultural</button>
+        </div>
+      </div>
+
+   {% for photos in gallery %}
+        <a href="{{ photos.img.url}}"
+          class="glightbox gallery_product col-6 col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {{photos.image_category}}">
+          <img src="{{ photos.img.url}}">
+        </a>
+   {% endfor %}
+    </div>
+  </div>
+
+  <script src="{% static 'js/glightbox.min.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+</body>
+
+{% endblock  %}
