@@ -40,3 +40,12 @@
   background-color: DodgerBlue;
   }
 
+#booking {
+	background-image: url('img/background.jpg');
+}
+
+/**
+.booking-form {
+	background-image: url('img/background.jpg');
+}
+**/

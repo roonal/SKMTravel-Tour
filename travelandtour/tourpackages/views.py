@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import EducationalTourForm, BookingForm
+from .forms import EducationalTourForm, BookingForm, TripCustomizeForm
 from .models import AboutNepal, Blog, Gallery
 from home.models import Packages
 
@@ -69,3 +69,17 @@ def company_profile(request):
 def photo_gallery(request):
     context = {'gallery': Gallery.objects.all(), 'packages': Packages.objects.all()}
     return render(request, 'user/gallery.html', context)
+
+
+def customize_trip(request):
+    if request.method == "POST":
+        form = TripCustomizeForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = TripCustomizeForm()
+    context = {'form': form, 'packages': Packages.objects.all()}
+    return render(request, 'user/customize_trip1.html', context)
+

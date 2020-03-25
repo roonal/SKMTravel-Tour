@@ -1,12 +1,14 @@
 
-
 /*** package header css *****/
- .package_header .package_heading{
-	margin-bottom: 100px;
-	text-align: center;
+.package_header{
+    margin-top:20px;
+}
+ .package_heading{
+	margin-bottom: 30px;
+
 }
 
-.package_header .package_image{
+.package_image{
 	width: 100%;
 	height: 100%;
 }
@@ -15,22 +17,69 @@
 	text-decoration: none;
 	display: block;
 	cursor: pointer;
-	background: #e6e6e6;
-	border-radius: 8px 12px 0 0;
+	background: #ED7701;
+	border-radius: 90px 90px 0 0;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 24px;
+	color: white;
 }
 .package_header ul li a:hover{
-	border-radius: 8px 16px 0 0;
-	background: #e74c3c;
+	border-radius: 90px 90px 0 0;
+	background: #55A516;
 
 }
 
 .tab-content{
 	background: #ccc;
 	padding: 20px;
+}
 
+.package_image img{
+    width:700px;
+    height:450px;
+}
+
+.package_button{
+    border:
+}
+
+.package_button{
+	border: 5px solid blue;
+	border-style: double;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.package_button h2{
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.head-content{
+    margin-bottom:10px;
+}
+.tab-content, .tab-head{
+    margin-left:15px;
+    margin-right:15px;
 
 }
 
+.head-btn{
+    height:80px;
+    width:157px;
 
+}
+
+.package_button a button{
+    font-size:22px;
+    font-weight:bold;
+}
+
+#reviews .border{
+	border: 10px solid black;
+	border-radius: 10px;
+}
+
+.border-content{
+    margin: 10px 10px 10px 10px;
+}

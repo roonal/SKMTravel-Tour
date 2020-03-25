@@ -1,8 +1,10 @@
 from django.db import models
 from django_countries.fields import CountryField
+from home.models import Packages
 
 
 # Create your models here.
+from multiselectfield import MultiSelectField
 
 
 class EducationalTour(models.Model):
@@ -115,3 +117,36 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.image_category
+
+
+PACKAGE_TYPES = (
+   ('tour', 'Adventure'),
+   ('trekking', 'Trekking'),
+   ('mountain_biking', 'Mountain Biking'),
+   ('peak_climbing', 'Peak Climbing'),
+    ('mountain_flights', 'Mountain Flights'),
+    ('short_treks', 'Short Treks'),
+    ('paragliding', 'Paragliding'),
+    ('jungle_safari', 'Jungle Safari'),
+    ('day_tour', 'Day Tour'),
+    ('bungee_jumping', 'Bungee Jumping')
+)
+
+
+class CustomizeTrip(models.Model):
+    id = models.AutoField(primary_key=True)
+    trip_name = models.CharField(max_length=100)
+    adults = models.CharField(choices=ADULT, max_length=128, default=0)
+    children = models.CharField(choices=CHILDREN, max_length=128, default=0)
+    budget_per_person = models.IntegerField()
+    duration = models.IntegerField()
+    package_type = MultiSelectField(choices=PACKAGE_TYPES)
+    full_name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+    email = models.CharField(max_length=80)
+    phone = models.CharField(max_length=50)
+    country = CountryField()
+    package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
+    payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
+    message = models.TextField()
+
