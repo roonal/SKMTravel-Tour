@@ -13,7 +13,7 @@ class EducationalTour(models.Model):
     address = models.CharField(max_length=80)
     email = models.EmailField(max_length=100)
     number = models.CharField(max_length=20)
-    organization_name = models.CharField(max_length=100)
+    organization_name = models.CharField(max_length=100, null=True, blank=True)
     location = models.CharField(max_length=50)
     total_people = models.IntegerField()
     destination = models.CharField(max_length=200)
@@ -54,13 +54,14 @@ class Booking(models.Model):
     address = models.CharField(max_length=50)
     country = CountryField()
     airport_pickup = models.CharField(choices=AIRPORT_PICKUP, max_length=128)
-    arrival_date = models.DateField()
-    departure_date = models.DateField()
-    arrival_time = models.TimeField()
+    arrival_date = models.DateField(null=True, blank=True)
+    departure_date = models.DateField(null=True, blank=True)
+    arrival_time = models.TimeField(null=True, blank=True)
     adults = models.CharField(choices=ADULT, max_length=128, default=0)
     children = models.CharField(choices=CHILDREN, max_length=128, default=0)
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
+    # request_package = models.ForeignKey(Packages, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -148,5 +149,5 @@ class CustomizeTrip(models.Model):
     country = CountryField()
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
-    message = models.TextField()
+    message = models.TextField(null=True, blank=True)
 

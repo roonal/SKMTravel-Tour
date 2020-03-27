@@ -12,6 +12,12 @@ def educational_tour(request):
         form = EducationalTourForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
+            # radio_value = request.POST.get('choice')
+            # if radio_value == 'yes':
+            #     post.airport_pickup = "yes"
+            # else:
+            #     post.airport_pickup = "no"
+
             post.save()
             return redirect('index')
     else:
@@ -20,7 +26,7 @@ def educational_tour(request):
     return render(request, 'user/educational_tour.html', context)
 
 
-def package_booking(request):
+def package_booking(request, pk):
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -29,7 +35,7 @@ def package_booking(request):
             return redirect('index')
     else:
         form = BookingForm()
-    context = {'form': form, 'packages': Packages.objects.all()}
+    context = {'form': form, 'tourpackages': Packages.objects.filter(package_id=pk), 'packages': Packages.objects.all()}
     return render(request, 'user/test_form.html', context)
 
 

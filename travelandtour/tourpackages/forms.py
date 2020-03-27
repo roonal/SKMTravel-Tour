@@ -9,6 +9,14 @@ class EducationalTourForm(forms.ModelForm):
         fields = ('name', 'address', 'email', 'number', 'organization_name', 'location', 'total_people', 'destination', 'total_days')
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
+
+
 class BookingForm(forms.ModelForm):
     AIRPORT_PICKUP = (
         ('yes', 'Yes'),
@@ -22,6 +30,11 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ('name', 'email', 'phone_number', 'address', 'country', 'airport_pickup', 'adults',
                   'arrival_date', 'departure_date', 'arrival_time',  'children', 'package_category', 'payment_mode')
+        widgets = {
+            'arrival_date': DateInput(),
+            'departure_date': DateInput(),
+            'arrival_time': TimeInput(),
+        }
 
 
 class TripCustomizeForm(forms.ModelForm):
