@@ -1,6 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
-from home.models import Packages
+# from home.models import Packages
 
 
 # Create your models here.
@@ -144,10 +144,16 @@ class CustomizeTrip(models.Model):
     package_type = MultiSelectField(choices=PACKAGE_TYPES)
     full_name = models.CharField(max_length=50)
     address = models.CharField(max_length=80)
-    email = models.CharField(max_length=80)
+    email = models.EmailField(max_length=80)
     phone = models.CharField(max_length=50)
     country = CountryField()
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
     message = models.TextField(null=True, blank=True)
 
+
+class GetInTouchRequest(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=80)
+    message = models.TextField(null=True, blank=True)

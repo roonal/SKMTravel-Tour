@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import EducationalTourForm, BookingForm, TripCustomizeForm
 from .models import AboutNepal, Blog, Gallery
 from home.models import Packages
+from travelandtour.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -32,6 +34,11 @@ def package_booking(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+            # subject = 'Welcome to SKM Travel & Tour'
+            # message = 'Hope you are enjoying your Django Tutorials'
+            # recepient = str(post['email'].value())
+            # send_mail(subject,
+            #           message, EMAIL_HOST_USER, [recepient], fail_silently=False)
             return redirect('index')
     else:
         form = BookingForm()

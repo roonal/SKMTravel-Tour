@@ -1,21 +1,44 @@
 {% extends 'shared/header-footer.html' %}
 
+{% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
-        <div class=""row>
-            <h2>Login</h2>
-    <form method="post">
-        {% for message in messages %}
-       <p style="color: red">{{message}}</p>
-    {% endfor %}
-
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Login</button>
-        <a href="{% url 'password_reset' %}">Forget Password</a>
-    </form>
+<div class="container booking-form">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h1 class="mt-2">Login Form</h1>
+            <hr class="mt-0 mb-4">
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    {% for message in messages %}-->
+                       <p style="color: red">{{message}}</p>
+                    {% endfor %}
+                    {% for field in form %}
+                  <p>
+                    {{ field|as_crispy_field }}
+                  </p>
+                    {% endfor %}
+                     <button type="submit">Login</button>
+                    <a href="{% url 'password_reset' %}">Forget Password</a>
+                </form>
+                If you don't have an account <a href="{% url 'register'  %}" ><strong>Register</strong></a> instead.
         </div>
-    </div>
+      </div>
+</div>
+<!--    <div class="container">-->
+<!--        <div class=""row>-->
+<!--            <h2>Login</h2>-->
+<!--    <form method="post">-->
+<!--        {% for message in messages %}-->
+<!--       <p style="color: red">{{message}}</p>-->
+<!--    {% endfor %}-->
+
+<!--      {% csrf_token %}-->
+<!--      {{ form.as_p }}-->
+<!--      <button type="submit">Login</button>-->
+<!--        <a href="{% url 'password_reset' %}">Forget Password</a>-->
+<!--    </form>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
 {% endblock %}

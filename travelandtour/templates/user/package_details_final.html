@@ -18,9 +18,13 @@
 					<p> Duration: <h4> {{package.total_days}} </h4></p>
                     <p> Package Difficulty: <h4> {{package.difficulty}}</h4></p>
                     <p> Start From:Rs. <h4>  {{package.price}}</h4></p>
-
-                    <a href="{% url 'booking_form' pk=package.package_id  %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
-                    <a href="{% url 'customize-trip'  %}"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
+					{% if user.is_authenticated %}
+                    	<a href="{% url 'booking_form' pk=package.package_id  %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
+                    	<a href="{% url 'customize-trip'  %}"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
+					{% else %}
+						<a href="{% url 'register' %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
+                    	<a href="{% url 'register'  %}"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
+					{% endif %}
 				</div>
 			</div>
         </div>

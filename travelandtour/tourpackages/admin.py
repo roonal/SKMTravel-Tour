@@ -9,3 +9,8 @@ admin.site.register(AboutNepal)
 admin.site.register(Blog)
 admin.site.register(Gallery)
 admin.site.register(CustomizeTrip)
+
+#chaging admin header
+admin.site.site_header = "Shree Krishna Mankamana Travel & Tour"
+admin.site.site_title = "SKM"
+admin.site.index_title = "Welcome to SKM Admin Site"

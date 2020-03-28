@@ -82,7 +82,7 @@
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								{% for package in packages %}
-										{% if package.total_days == '1D' %}
+										{% if package.package_type.package_type == 'Activities' %}
 											<a class="dropdown-item" href="{% url 'package_details' pk=package.package_id %}">
 												{% block activities %}
 													 {{package.package_name}}
@@ -233,7 +233,7 @@
 												<input type="text" class="footer-form-style" placeholder="Email">
 											</div>
 											<div class="footer-form-box">
-												<input type="text" class="footer-form-style" placeholder="Phone Number">
+												<input type="text" class="footer-form-style" placeholder="Message">
 											</div>
 											<div class="footer-form-box">
 												<input type="submit" class="footer-form-submit-style" value="SUBMIT" ">
