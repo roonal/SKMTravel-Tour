@@ -54,7 +54,10 @@
                         </div>
                         {{ form.message|as_crispy_field }}
 
-                <button type="submit" class="save btn btn-default">Save</button>
+                <button type="submit" class="save btn btn-primary">Save</button>
+                {% for package in tourpackages %}
+                <button type="cancel" class="cancel btn btn-danger"><a href="{% url  'package_details' slug=package.slug_field  %}"> Cancel</a></button>
+                {% endfor %}
             </form>
         </div>
       </div>

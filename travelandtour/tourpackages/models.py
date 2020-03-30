@@ -1,6 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 # from home.models import Packages
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -48,6 +49,7 @@ PAYMENT_MODE = (
 
 class Booking(models.Model):
     request_id = models.AutoField(primary_key=True)
+    selected_package = models.CharField(max_length=100, default="abc")
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=20)
@@ -94,6 +96,7 @@ class AboutNepal(models.Model):
 class Blog(models.Model):
     id = models.AutoField(primary_key=True)
     blog_name = models.CharField(max_length=100)
+    slug_field = models.SlugField(unique=True, null=True, blank=True)
     bolg_by = models.CharField(max_length=50)
     blog_date = models.DateField()
     blog_Details = models.TextField()
@@ -101,6 +104,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.blog_name
+
+    def save(self, *args, **kwargs):
+        self.slug_field = slugify(self.blog_name)
+        super(Blog, self).save(*args, **kwargs)
 
 
 IMAGE_CATEGORY = (
@@ -152,7 +159,7 @@ class CustomizeTrip(models.Model):
     message = models.TextField(null=True, blank=True)
 
 
-class GetInTouchRequest(models.Model):
+class UserRequest(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=80)

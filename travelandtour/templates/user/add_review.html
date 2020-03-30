@@ -1,0 +1,46 @@
+{% extends 'shared/header-footer.html' %}
+
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container booking-form">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h1 class="mt-2">Tour Review Form</h1>
+          <hr class="mt-0 mb-4">
+            <form method="POST" class="post-form">
+                    {% csrf_token %}
+                        {{ form.package_id|as_crispy_field }}
+                        <div class="row">
+                              <div class="col-6">
+                               {{ form.review_by|as_crispy_field }}
+                              </div>
+                              <div class="col-6">
+                                 {{ form.address|as_crispy_field }}
+                              </div>
+                        </div>
+
+                        <div class="row">
+                              <div class="col-6">
+                               {{ form.review_date|as_crispy_field }}
+                              </div>
+                              <div class="col-6">
+                                 {{ form.ratings|as_crispy_field }}
+                              </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                {{ form.review|as_crispy_field }}
+                            </div>
+
+                        </div>
+
+
+                <button type="submit" class="save btn btn-primary">Save</button>
+            </form>
+        </div>
+      </div>
+</div>
+
+{% endblock %}

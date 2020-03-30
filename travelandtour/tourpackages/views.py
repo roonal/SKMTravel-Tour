@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import EducationalTourForm, BookingForm, TripCustomizeForm
-from .models import AboutNepal, Blog, Gallery
+from .forms import EducationalTourForm, BookingForm, TripCustomizeForm, ReviewForm
+from .models import AboutNepal, Blog, Gallery, UserRequest
 from home.models import Packages
 from travelandtour.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
@@ -28,21 +28,16 @@ def educational_tour(request):
     return render(request, 'user/educational_tour.html', context)
 
 
-def package_booking(request, pk):
+def package_booking(request, slug):
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            # subject = 'Welcome to SKM Travel & Tour'
-            # message = 'Hope you are enjoying your Django Tutorials'
-            # recepient = str(post['email'].value())
-            # send_mail(subject,
-            #           message, EMAIL_HOST_USER, [recepient], fail_silently=False)
             return redirect('index')
     else:
         form = BookingForm()
-    context = {'form': form, 'tourpackages': Packages.objects.filter(package_id=pk), 'packages': Packages.objects.all()}
+    context = {'form': form, 'tourpackages': Packages.objects.filter(slug_field=slug), 'packages': Packages.objects.all()}
     return render(request, 'user/test_form.html', context)
 
 
@@ -66,8 +61,8 @@ def blog(request):
     return render(request, 'user/blog.html', context)
 
 
-def blog_details(request, pk):
-    context = {'blogs': Blog.objects.filter(id=pk), 'packages': Packages.objects.all()}
+def blog_details(request, slug):
+    context = {'blogs': Blog.objects.filter(slug_field=slug), 'packages': Packages.objects.all()}
     return render(request, 'user/blog_details.html', context)
 
 
@@ -84,7 +79,7 @@ def photo_gallery(request):
     return render(request, 'user/gallery.html', context)
 
 
-def customize_trip(request):
+def customize_trip(request, slug):
     if request.method == "POST":
         form = TripCustomizeForm(request.POST)
         if form.is_valid():
@@ -93,6 +88,28 @@ def customize_trip(request):
             return redirect('index')
     else:
         form = TripCustomizeForm()
-    context = {'form': form, 'packages': Packages.objects.all()}
+    context = {'form': form, 'packages': Packages.objects.all(), 'tourpackages': Packages.objects.filter(slug_field=slug)}
     return render(request, 'user/customize_trip1.html', context)
 
+
+def add_review(request):
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = ReviewForm()
+    context = {'form': form, 'packages': Packages.objects.all()}
+    return render(request, 'user/add_review.html', context)
+
+
+def user_request(request):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    message = request.POST.get('message')
+
+    a = UserRequest(name=name, email=email, message=message)
+    a.save()
+    return redirect('index')

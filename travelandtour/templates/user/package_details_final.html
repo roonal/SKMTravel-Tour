@@ -19,8 +19,8 @@
                     <p> Package Difficulty: <h4> {{package.difficulty}}</h4></p>
                     <p> Start From:Rs. <h4>  {{package.price}}</h4></p>
 					{% if user.is_authenticated %}
-                    	<a href="{% url 'booking_form' pk=package.package_id  %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
-                    	<a href="{% url 'customize-trip'  %}"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
+                    	<a href="{% url 'booking_form' slug=package.slug_field  %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
+                    	<a href="{% url 'customize-trip' slug=package.slug_field  %}"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
 					{% else %}
 						<a href="{% url 'register' %}"><button type="button" class="btn btn-primary head-btn">Book Now</button></a>
                     	<a href="{% url 'register'  %}"> <button type="button" class="btn btn-success head-btn">Customize My Trip</button></a>
@@ -74,7 +74,7 @@
 						<h5>Best Seasons :</h5>{{package.best_season}}<br>
 						<h5>Difficulty :</h5>{{package.difficulty}}<br>
 						<h5>Maximum Altitude :</h5>{{package.max_altitude}}<br>
-						<h5>Guider Details :</h5>{{package.staff_id.experience}}<br>
+						<h5>Guider Details :</h5>{{package.staff_id.name}}<br>
 					</p>
 				</div>
 				<div id="cost-info" class="tab-pane">
@@ -105,6 +105,7 @@
 
 					</p>
 				</div>
+
 				<div id="reviews" class="tab-pane">
                     <div class="row">
                         {% for rev in review %}
@@ -114,6 +115,20 @@
                                     <h5>Review By:</h5>{{rev.review_by}}<br/>
                                     <h5>Address:</h5>{{rev.address}}<br/>
                                     <h5>Review Date:</h5>{{rev.review_date}}<br/>
+									<h5>Rating:</h5>
+									<style>
+										.rate{
+											background-color:gold;
+											width:100%;
+											position:relative;
+										}
+									</style>
+									<div class="rate-style">
+										<div class="rate" style="width:calc(5%*{{rev.ratings}})">
+											<img src="{% static 'img/star9.png' %} " title="{{rev.ratings}}/5">
+<!--											{{rev.ratings}}<br/>-->
+										</div>
+									</div><br>
                                     {{rev.review}}<br/>
                                 </div>
                             </div>

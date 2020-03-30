@@ -112,7 +112,7 @@
 										<h3>{{package.package_name}}</h3>
 										<h5>{{package.total_days}}</h5>
 										<h4>Start From:Rs.{{package.price}}</h4>
-										<p><a href="{% url 'package_details' pk=package.package_id %}"><button type="button" class="btn btn-outline-primary">View Details</button></a></p>
+										<p><a href="{% url 'package_details' slug=package.slug_field %}"><button type="button" class="btn btn-outline-primary">View Details</button></a></p>
 <!--										<p><a href="#" >Click Here</a>for details</p>-->
 									</div>
 								</div>
@@ -148,7 +148,7 @@
 											<img class="card-img-top img-fluid" src="{{ package.img.url}}" alt="Card image cap">
 										</div>
 										<h3 class="card-title"><h3>{{package.package_name}}</h3>
-										<a href="{% url 'package_details' pk=package.package_id %}" class="btn btn-primary">View Details</a>
+										<a href="{% url 'package_details' slug=package.slug_field %}" class="btn btn-primary">View Details</a>
 
 									</div>
 								</div>
@@ -181,11 +181,11 @@
 							{% if blog.blog_name == "Everest Region Trek" %}
 							<div class="col-md-4" >
 								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
-								<h3><a href="{% url 'blog-details' pk=blog.id %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+								<h3><a href="{% url 'blog-details' slug=blog.slug_field %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
 								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
 								<p class="post-content">
 									{{blog.blog_Details|safe|truncatewords:"36"|linebreaks}}
-									<a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+									<a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>
 								</p>
 
 							</div>
@@ -194,11 +194,11 @@
 						{% if blog.blog_name == "Dharan" %}
 							<div class="col-md-4" >
 								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
-								<h3><a href="{% url 'blog-details' pk=blog.id %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+								<h3><a href="{% url 'blog-details' slug=blog.slug_field %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
 								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
 								<p class="post-content">
 									{{blog.blog_Details|safe|truncatewords:"40"|linebreaks}}
-									<a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+									<a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>
 								</p>
 							</div>
 							{% endif %}
@@ -206,11 +206,11 @@
 						{% if blog.blog_name == "Pokhara" %}
 							<div class="col-md-4" >
 								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
-								<h3><a href="{% url 'blog-details' pk=blog.id %}"  class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
+								<h3><a href="{% url 'blog-details' slug=blog.slug_field %}"  class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
 								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
 								<p class="post-content">
 									{{blog.blog_Details|safe|truncatewords:"40"|linebreaks}}
-									<a href="{% url 'blog-details' pk=blog.id %}" class="btn btn-primary">Read More</a>
+									<a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>
 								</p>
 							</div>
 							{% endif %}

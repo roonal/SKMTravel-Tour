@@ -1,4 +1,6 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.text import slugify
 
 
 class Company(models.Model):
@@ -46,6 +48,7 @@ class PackageType(models.Model):
 class Packages(models.Model):
     package_id = models.AutoField(primary_key=True)
     package_name = models.CharField(max_length=50)
+    slug_field = models.SlugField(unique=True, null=True, blank=True)
     total_days = models.CharField(max_length=20)
     price = models.IntegerField()
     max_altitude = models.CharField(max_length=50)
@@ -54,12 +57,16 @@ class Packages(models.Model):
     difficulty = models.CharField(max_length=20)
     overview = models.TextField()
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-    # staff_id = models.ManyToManyField(Staff)
+    staff_id = models.ManyToManyField(Staff, default=1, null=True, blank=True)
     package_type = models.ForeignKey(PackageType, on_delete=models.CASCADE)
 
     # for showing particular name in the drop down menu in admin panel
     def __str__(self):
         return self.package_name
+
+    def save(self, *args, **kwargs):
+        self.slug_field = slugify(self.package_name)
+        super(Packages, self).save(*args, **kwargs)
 
 
 class PackageReview(models.Model):
@@ -67,8 +74,13 @@ class PackageReview(models.Model):
     review_by = models.CharField(max_length=100)
     address = models.CharField(max_length=60)
     review_date = models.DateField()
+    ratings = models.IntegerField()
     review = models.TextField()
     package_id = models.ForeignKey(Packages, on_delete=models.CASCADE)
+    review_verification = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.review_by
 
 
 COST_CHOICES = (

@@ -75,8 +75,8 @@
     font-weight:bold;
 }
 
-#reviews .border{
-	border: 10px solid black;
+#reviews .border-style{
+	border: 3px solid black;
 	border-radius: 10px;
 }
 

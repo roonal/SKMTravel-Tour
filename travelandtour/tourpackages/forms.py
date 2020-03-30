@@ -1,6 +1,7 @@
 from django import forms
 from .models import EducationalTour, Booking, CustomizeTrip
 from django_countries.data import COUNTRIES
+from home.models import PackageReview
 
 
 class EducationalTourForm(forms.ModelForm):
@@ -28,7 +29,7 @@ class BookingForm(forms.ModelForm):
 
     class Meta:
         model = Booking
-        fields = ('name', 'email', 'phone_number', 'address', 'country', 'airport_pickup', 'adults',
+        fields = ('selected_package', 'name', 'email', 'phone_number', 'address', 'country', 'airport_pickup', 'adults',
                   'arrival_date', 'departure_date', 'arrival_time',  'children', 'package_category', 'payment_mode')
         widgets = {
             'arrival_date': DateInput(),
@@ -42,3 +43,9 @@ class TripCustomizeForm(forms.ModelForm):
         model = CustomizeTrip
         fields = ('trip_name', 'adults', 'children',  'budget_per_person', 'duration', 'package_type', 'full_name', 'address',
                   'email', 'phone', 'country', 'package_category', 'payment_mode', 'message')
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = PackageReview
+        fields = ('package_id', 'review_by', 'address', 'review_date', 'ratings', 'review')
