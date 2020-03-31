@@ -2,6 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 # from home.models import Packages
 from django.utils.text import slugify
+from .utils import get_unique_slug
 
 
 # Create your models here.
@@ -97,17 +98,23 @@ class Blog(models.Model):
     id = models.AutoField(primary_key=True)
     blog_name = models.CharField(max_length=100)
     slug_field = models.SlugField(unique=True, null=True, blank=True)
-    bolg_by = models.CharField(max_length=50)
+    blog_by = models.CharField(max_length=50)
     blog_date = models.DateField()
     blog_Details = models.TextField()
     img = models.ImageField(upload_to='Package_Images/')
+    blog_verification = models.BooleanField(default=False)
 
     def __str__(self):
         return self.blog_name
 
+    # def save(self, *args, **kwargs):
+    #     self.slug_field = slugify(self.blog_name)
+    #     super(Blog, self).save(*args, **kwargs)
+
     def save(self, *args, **kwargs):
-        self.slug_field = slugify(self.blog_name)
-        super(Blog, self).save(*args, **kwargs)
+        if not self.slug_field:
+            self.slug_field = get_unique_slug(self, 'blog_name', 'slug_field')
+        super().save(*args, **kwargs)
 
 
 IMAGE_CATEGORY = (

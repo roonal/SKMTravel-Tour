@@ -23,7 +23,6 @@
 		<script type="text/javascript" src=" {% static 'js/caroufredsel.js' %}"></script> <!-- jquery plugin caroufredsel slider
 	-->
 
-
 	</head>
 	<body id="main">
 		<header>
@@ -124,7 +123,20 @@
 					</div>
 				</nav>
 			</header>
-
+		<div class="container booking-form">
+      		<div class="row justify-content-center">
+				{% if messages %}
+				<ul class="messages">
+					<br>
+					{% for message in messages %}
+					<div class="alert alert-success">
+						<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					</div>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</div>
+		</div>
 		{% block content %}
 
 	{% endblock %}
@@ -185,7 +197,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-6 col-sm-12">
+							<div class="col-lg-4 col-md-6 col-sm-12">
+								<div class="footer-section-four">
+									<div id="map-container" class="map-container z-depth-1-half" style="height:350px;">
+										<div class="mapouter"><div class="gmap_canvas"><iframe width="420" height="332" id="gmap_canvas" src="https://maps.google.com/maps?q=shree%20krishna%20mankamana&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></a></div><style>.mapouter{position:relative;text-align:right;height:350px;width:420px;}.gmap_canvas {overflow:hidden;background:none!important;height:350px;width:420px;}</style></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-6 col-sm-12">
 								<div class="footer-section-two">
 									<div class="footer-heading"><h2>Quick Link</h2></div>
 									<div class="footer-link">
@@ -203,24 +222,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-6 col-sm-12">
-								<div class="footer-section-two">
-									<div class="footer-heading"><h2>Our Services</h2></div>
-									<div class="footer-link">
-										<ul>
-											<li><a href="#">Linux Hosting</a></li>
-											<li><a href="#">Windows Hosting</a></li>
-											<li><a href="#">Domain Registration</a></li>
-											<li><a href="#">SEO Promotion</a></li>
-											<li><a href="#">Our Plans</a></li>
-											<li><a href="#">Latest Offers</a></li>
-											<li><a href="#">Sitemap</a></li>
-											<li><a href="#">Website Maintenance</a></li>
 
-										</ul>
-									</div>
-								</div>
-							</div>
 							<div class="col-lg-3 col-md-6 col-sm-12">
 								<div class="footer-section-three">
 									<div class="footer-heading"><h2>Get in touch</h2></div>
@@ -282,5 +284,6 @@
 			<!-- javascript reference ------>
 			<script type="text/javascript" src=" {% static 'js/bootstrap.min.js' %}"></script>
 			<script type="text/javascript" src=" {% static 'js/test.js' %}"></script>
+
 		</body>
 	</html>

@@ -5,7 +5,7 @@ from tourpackages.models import Blog
 
 
 def index(request):
-    context = {'packages': Packages.objects.all(), 'blogs': Blog.objects.all()}
+    context = {'packages': Packages.objects.all(), 'blogs': Blog.objects.filter(blog_verification=True)}
     return render(request, 'user/index.html', context)
 
 

@@ -10,6 +10,7 @@ urlpatterns = [
     path('about-nepal/', views.about_nepal, name="about-nepal"),
     path('about-visa/', views.about_visa, name="about-visa"),
     path('blog/', views.blog, name="blog"),
+    path('add-blog/', views.add_blog, name="add-blog"),
     path('blog-details/<slug>/', views.blog_details, name="blog-details"),
     path('about-company/', views.about_company, name="about-company"),
     path('company-profile/', views.company_profile, name="company-profile"),

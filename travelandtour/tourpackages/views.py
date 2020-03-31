@@ -1,9 +1,13 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
-from .forms import EducationalTourForm, BookingForm, TripCustomizeForm, ReviewForm
+from .forms import EducationalTourForm, BookingForm, TripCustomizeForm, ReviewForm, AddBlogForm
 from .models import AboutNepal, Blog, Gallery, UserRequest
 from home.models import Packages
+from django.contrib import messages
+from django.core.paginator import Paginator
 from travelandtour.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
+
 
 
 # Create your views here.
@@ -21,7 +25,10 @@ def educational_tour(request):
             #     post.airport_pickup = "no"
 
             post.save()
-            return redirect('index')
+            messages.success(request, 'Successfully requested for the group/education tour')
+            return redirect('educational_tour')
+        else:
+            messages.warning(request, 'Please correct the error below.')
     else:
         form = EducationalTourForm()
     context = {'form': form, 'packages': Packages.objects.all()}
@@ -34,7 +41,19 @@ def package_booking(request, slug):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('index')
+
+            subject = 'New tour booking request'
+            message = 'Dear admin of SKM Travel and Tour, you received a new tour booking request.' \
+                      ' The details are as follow:'
+            email_from = post.email
+            email = settings.EMAIL_HOST_USER
+            recipient = [email]
+            send_mail(subject, message, email_from, recipient, fail_silently=False)
+
+            messages.success(request, 'Successfully requested for the package booking')
+            return redirect('booking_form', slug=slug)
+        else:
+            messages.warning(request, 'Please correct the error below.')
     else:
         form = BookingForm()
     context = {'form': form, 'tourpackages': Packages.objects.filter(slug_field=slug), 'packages': Packages.objects.all()}
@@ -57,7 +76,12 @@ def about_visa(request):
 
 
 def blog(request):
-    context = {'blogs': Blog.objects.all(), 'packages': Packages.objects.all()}
+    blog_list = Blog.objects.filter(blog_verification=True)
+    paginator = Paginator(blog_list, 6)  # Show 6 blogs per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'blogs': page_obj, 'packages': Packages.objects.all()}
     return render(request, 'user/blog.html', context)
 
 
@@ -85,7 +109,10 @@ def customize_trip(request, slug):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('index')
+            messages.success(request, 'Successfully requested for the trip customization')
+            return redirect('customize-trip', slug=slug)
+        else:
+            messages.warning(request, 'Please correct the error below.')
     else:
         form = TripCustomizeForm()
     context = {'form': form, 'packages': Packages.objects.all(), 'tourpackages': Packages.objects.filter(slug_field=slug)}
@@ -98,7 +125,11 @@ def add_review(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('index')
+            messages.success(request, 'Successfully requested for package review')
+            return redirect('add-review')
+        else:
+            messages.warning(request, 'Please correct the error below.')
+
     else:
         form = ReviewForm()
     context = {'form': form, 'packages': Packages.objects.all()}
@@ -113,3 +144,19 @@ def user_request(request):
     a = UserRequest(name=name, email=email, message=message)
     a.save()
     return redirect('index')
+
+
+def add_blog(request):
+    if request.method == "POST":
+        form = AddBlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            messages.success(request, 'Successfully requested for blog post')
+            return redirect('add-blog')
+        else:
+            messages.warning(request, 'Please correct the error below.')
+    else:
+        form = AddBlogForm()
+    context = {'form': form, 'packages': Packages.objects.all()}
+    return render(request, 'user/add_blog.html', context)

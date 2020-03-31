@@ -1,5 +1,5 @@
 from django import forms
-from .models import EducationalTour, Booking, CustomizeTrip
+from .models import EducationalTour, Booking, CustomizeTrip, Blog
 from django_countries.data import COUNTRIES
 from home.models import PackageReview
 
@@ -49,3 +49,9 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = PackageReview
         fields = ('package_id', 'review_by', 'address', 'review_date', 'ratings', 'review')
+
+
+class AddBlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('blog_name', 'blog_by', 'blog_date', 'blog_Details', 'img')

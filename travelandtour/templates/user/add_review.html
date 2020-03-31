@@ -29,12 +29,8 @@
                                  {{ form.ratings|as_crispy_field }}
                               </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                {{ form.review|as_crispy_field }}
-                            </div>
+                        {{ form.review|as_crispy_field }}
 
-                        </div>
 
 
                 <button type="submit" class="save btn btn-primary">Save</button>
