@@ -66,3 +66,13 @@ def packages(request):
     return render(request, 'user/packages.html')
 
 
+def profile_change(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('index')
+    else:
+        form = SignUpForm()
+    return render(request, 'user-auth/profile_change_form.html', {'form': form})

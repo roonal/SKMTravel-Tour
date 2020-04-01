@@ -7,10 +7,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from travelandtour.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
-
-
-
-# Create your views here.
+from django.core.mail import EmailMessage
 
 
 def educational_tour(request):
@@ -18,13 +15,26 @@ def educational_tour(request):
         form = EducationalTourForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            # radio_value = request.POST.get('choice')
-            # if radio_value == 'yes':
-            #     post.airport_pickup = "yes"
-            # else:
-            #     post.airport_pickup = "no"
-
             post.save()
+
+            name = form.cleaned_data.get('name')
+            organization_name = form.cleaned_data.get('organization_name')
+            email_from = form.cleaned_data.get('email')
+            destination = form.cleaned_data.get('destination')
+            address = form.cleaned_data.get('address')
+
+            subject = 'New Group Tour request'
+            message = 'Dear admin of SKM Travel and Tour, you received a new educational/group tour request.' \
+                      ' The details are as follow: ' + \
+                      ' Requested By: {}, Address: {}, Organization Name: {}, Email: {}, Requested Destination: {}' \
+                .format(name, address, organization_name, email_from, destination) + \
+                      'Please review the group tour request and notified the user. Thank You'
+
+            email = settings.EMAIL_HOST_USER
+            recipient = [email]
+
+            send_mail(subject, message, email_from, recipient, fail_silently=False)
+
             messages.success(request, 'Successfully requested for the group/education tour')
             return redirect('educational_tour')
         else:
@@ -42,12 +52,22 @@ def package_booking(request, slug):
             post = form.save(commit=False)
             post.save()
 
+            name = form.cleaned_data.get('name')
+            package_name = form.cleaned_data.get('selected_package')
+            email_from = form.cleaned_data.get('email')
+            country = form.cleaned_data.get('country')
+            address = form.cleaned_data.get('address')
+
             subject = 'New tour booking request'
             message = 'Dear admin of SKM Travel and Tour, you received a new tour booking request.' \
-                      ' The details are as follow:'
-            email_from = post.email
+                      ' The details are as follow: ' + \
+                      ' Requested By: {}, Requested Package Name: {}, Email: {}, Country: {}, Address: {}'\
+                .format(name, package_name, email_from, country, address) +\
+                      'Please review the request and notified the user. Thank You'
+
             email = settings.EMAIL_HOST_USER
             recipient = [email]
+
             send_mail(subject, message, email_from, recipient, fail_silently=False)
 
             messages.success(request, 'Successfully requested for the package booking')
@@ -109,6 +129,25 @@ def customize_trip(request, slug):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
+
+            trip_name = form.cleaned_data.get('name')
+            full_name = form.cleaned_data.get('selected_package')
+            email_from = form.cleaned_data.get('email')
+            country = form.cleaned_data.get('country')
+            address = form.cleaned_data.get('address')
+
+            subject = 'New Tou Customization request'
+            message = 'Dear admin of SKM Travel and Tour, you received a new tour customization request.' \
+                      ' The details are as follow: ' + \
+                      ' Requested By: {}, Requested Trip Name: {}, Email: {}, Country: {}, Address: {}' \
+                          .format(full_name, trip_name, email_from, country, address) + \
+                      'Please review the request and notified the user. Thank You'
+
+            email = settings.EMAIL_HOST_USER
+            recipient = [email]
+
+            send_mail(subject, message, email_from, recipient, fail_silently=False)
+
             messages.success(request, 'Successfully requested for the trip customization')
             return redirect('customize-trip', slug=slug)
         else:

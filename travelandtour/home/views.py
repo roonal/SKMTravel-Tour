@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Packages, PackageActivities, PackagePlan, Destination,PackageCostInfo, PackageReview, Staff
-from tourpackages.models import Blog
+from tourpackages.models import Blog, Booking
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 def index(request):

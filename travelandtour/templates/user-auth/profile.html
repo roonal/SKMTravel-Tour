@@ -1,15 +1,24 @@
 {% extends 'shared/header-footer.html' %}
+{% load static %}
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <p>Username:  {{user.username}}</p></br><br/>
-            <p>First Name:  {{user.first_name}}</p></br>
-            <p>Last Name:  {{user.last_name}}</p></br>
-            <p>Email:  {{user.email}}</p></br>
+    <section class="header">
+        <div class="heading">
+			<h1>User Profile </h1>
+		</div>
 
+		<div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="text-align:center;">
+                    <h6>Name: {{user.first_name}}&nbsp;{{user.last_name}}</h6>
+                    <h6>Username: {{user.username}}</h6>
+                    <h6>Registered Email: {{user.email}}</h6>
+                    <br>
+                    <a href="{% url 'password_change' %}"><button class="btn btn-primary " type="submit">Change Password</button></a>
+                    <a href="{% url 'profile_change' %}"><button class="btn btn-success " type="submit">Change Profile</button></a>
+
+            </div>
         </div>
-    </div>
-
+	</section>
 {% endblock %}
