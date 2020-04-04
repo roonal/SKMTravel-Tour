@@ -91,12 +91,20 @@ input[type=radio], .lbl {
                           <div class="col-6">
                             {{ form.payment_mode|as_crispy_field }}
                           </div>
+                        <div class="col-6">
+                            <button type="submit" class="save btn btn-primary btn-block btn-lg">Book</button>
                         </div>
-                    <button type="submit" class="save btn btn-primary">Book</button>
-                    {% for package in tourpackages %}
-                    <button type="cancel" class="cancel btn btn-danger"><a href="{% url  'package_details' slug=package.slug_field  %}"> Cancel</a></button>
-                    {% endfor %}
+                        </div>
                 </form>
+                    <div class="row">
+                        <div class="col-6">
+                                {% for package in tourpackages %}
+                                <a href="{% url 'package_details' slug=package.slug_field  %}"><button type="cancel" class="cancel btn btn-success btn-block btn-lg" >Cancel</button></a>
+<!--                                <button type="cancel" class="cancel btn btn-success btn-block btn-lg"><a href="{% url  'package_details' slug=package.slug_field  %}"> Cancel</a></button>-->
+                                {% endfor %}
+                            </div>
+                        </div>
+
         </div>
       </div>
     </div>

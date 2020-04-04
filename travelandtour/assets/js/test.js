@@ -199,6 +199,13 @@ jQuery(document).ready(function(){
 		$("html").animate({scrollTop: 0},2000);
 
 	})
+
+
+
 });
+
+
+///////////////////////////////////////////** **////
+
 
 

@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.shortcuts import render, redirect
 from .forms import EducationalTourForm, BookingForm, TripCustomizeForm, ReviewForm, AddBlogForm
@@ -50,6 +52,30 @@ def package_booking(request, slug):
         form = BookingForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
+
+            airport_pickup = form.cleaned_data.get('airport_pickup')
+            if airport_pickup == 'yes':
+
+                arrival_date = form.cleaned_data.get('arrival_date')
+                departure_date = form.cleaned_data.get('departure_date')
+                airport_time = form.cleaned_data.get('airport_time')
+
+                if arrival_date is not None and departure_date is not None and airport_time is not None:
+                    diff = departure_date - arrival_date
+                    if arrival_date < datetime.date.today() or departure_date < arrival_date \
+                            or diff.days < 5:
+                        messages.warning(request,
+                                         'Please Make sure about the arrival and departure date. Its incorrect.')
+                        context = {'form': form, 'tourpackages': Packages.objects.filter(slug_field=slug),
+                                   'packages': Packages.objects.all()}
+                        return render(request, 'user/test_form.html', context)
+                else:
+                    messages.warning(request, 'Please inform us about the arrival date, '
+                                              'departure date and airport time clearly.')
+                    context = {'form': form, 'tourpackages': Packages.objects.filter(slug_field=slug),
+                               'packages': Packages.objects.all()}
+                    return render(request, 'user/test_form.html', context)
+
             post.save()
 
             name = form.cleaned_data.get('name')
@@ -60,10 +86,10 @@ def package_booking(request, slug):
 
             subject = 'New tour booking request'
             message = 'Dear admin of SKM Travel and Tour, you received a new tour booking request.' \
-                      ' The details are as follow: ' + \
-                      ' Requested By: {}, Requested Package Name: {}, Email: {}, Country: {}, Address: {}'\
+                ' The details are as follow: ' + \
+                ' Requested By: {}, Requested Package Name: {}, Email: {}, Country: {}, Address: {}'\
                 .format(name, package_name, email_from, country, address) +\
-                      'Please review the request and notified the user. Thank You'
+                'Please review the request and notified the user. Thank You'
 
             email = settings.EMAIL_HOST_USER
             recipient = [email]

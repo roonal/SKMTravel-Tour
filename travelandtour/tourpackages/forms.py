@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from .models import EducationalTour, Booking, CustomizeTrip, Blog
 from django_countries.data import COUNTRIES
@@ -29,6 +31,9 @@ class BookingForm(forms.ModelForm):
 
     class Meta:
         model = Booking
+        help_texts = {
+            'departure_date': 'At least 6 days more than the arrival date',
+        }
         fields = ('selected_package', 'name', 'email', 'phone_number', 'address', 'country', 'airport_pickup', 'adults',
                   'arrival_date', 'departure_date', 'arrival_time',  'children', 'package_category', 'payment_mode')
         widgets = {
@@ -48,10 +53,24 @@ class TripCustomizeForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = PackageReview
+        help_texts = {
+            'ratings': 'Please rate out of 5 (1,2,3,4 or 5)',
+        }
+        labels = {
+            "package_id": "Select Package Name",
+            "review_by": "Your Name",
+            "review": "Please write your review here"
+        }
         fields = ('package_id', 'review_by', 'address', 'review_date', 'ratings', 'review')
+        widgets = {
+            'review_date': DateInput(),
+        }
 
 
 class AddBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         fields = ('blog_name', 'blog_by', 'blog_date', 'blog_Details', 'img')
+        widgets = {
+            'blog_date': DateInput(),
+        }

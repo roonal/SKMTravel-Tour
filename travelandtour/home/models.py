@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Company(models.Model):
@@ -74,7 +75,10 @@ class PackageReview(models.Model):
     review_by = models.CharField(max_length=100)
     address = models.CharField(max_length=60)
     review_date = models.DateField()
-    ratings = models.IntegerField()
+    ratings = models.IntegerField(validators=[
+            MaxValueValidator(5),
+            MinValueValidator(1)
+        ])
     review = models.TextField()
     package_id = models.ForeignKey(Packages, on_delete=models.CASCADE)
     review_verification = models.BooleanField(default=False)

@@ -1,8 +1,10 @@
 
 .navbar1{
 	margin-top: -20px;
+	position:fixed;
 
 }
+
 
 .navbar1 img{
 	height: 150px;
@@ -32,15 +34,17 @@
 
 .navbar2{
 	margin-top: -20px;
+	position:fixed;
 }
 
 .nav-item{
 	font-size: 16px;
 	font-weight: bold;
 	text-align: center;
+	color:white;
 }
 #navbarNavDropdown2{
-	margin-left: 150px;
+	margin-left: 100px;
 	
 }
 
@@ -566,11 +570,11 @@ footer .submit-button
 
 .slider-content{
 	text-align: center;
-	margin-top: 0px;
 	position: relative;
+	margin-top:-20px;
 }
 ul.last-slider-pager{
-	margin-left: 200px;
+	margin-left: 230px;
 } 
 
  ul.last-slider-pager li

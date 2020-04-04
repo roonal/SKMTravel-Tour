@@ -74,7 +74,12 @@
 						<h5>Best Seasons :</h5>{{package.best_season}}<br>
 						<h5>Difficulty :</h5>{{package.difficulty}}<br>
 						<h5>Maximum Altitude :</h5>{{package.max_altitude}}<br>
-						<h5>Guider Details :</h5>{{package.staff_id.name}}<br>
+						<h5>Guider Details :</h5>
+						{% for guide in guides %}
+								<h4>{{guide.name}}:
+								</h4>
+						{% endfor %}
+
 					</p>
 				</div>
 				<div id="cost-info" class="tab-pane">
