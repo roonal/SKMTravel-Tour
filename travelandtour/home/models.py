@@ -60,6 +60,8 @@ class Packages(models.Model):
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     staff_id = models.ManyToManyField(Staff, default=1, null=True, blank=True)
     package_type = models.ForeignKey(PackageType, on_delete=models.CASCADE)
+    featured_package = models.BooleanField(default=False)
+    best_selling_package = models.BooleanField(default=False)
 
     # for showing particular name in the drop down menu in admin panel
     def __str__(self):
@@ -98,6 +100,9 @@ class PackageCostInfo(models.Model):
     cost_details = models.CharField(max_length=200)
     cost_type = models.CharField(choices=COST_CHOICES, max_length=128)
     package_cost = models.ManyToManyField(Packages)
+
+    def __str__(self):
+        return self.cost_details
 
 
 class Destination(models.Model):

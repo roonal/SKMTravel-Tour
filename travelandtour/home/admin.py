@@ -16,7 +16,8 @@ class PackagesAdmin(admin.ModelAdmin):
         ('img', 'difficulty'),
         ('company_id', 'package_type'),
         ('staff_id', 'slug_field'),
-        'overview'
+        'overview',
+        ('featured_package', 'best_selling_package')
     )
 
 

@@ -567,7 +567,9 @@ footer .submit-button
 }
 
 /**last slider **/
-
+.bg-image{
+    background-color: #669999;
+}
 .slider-content{
 	text-align: center;
 	position: relative;

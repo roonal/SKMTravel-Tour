@@ -24,7 +24,7 @@
                 <div class="col-md-4 blog-field" >
                     <img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
                     <h3><a href="{% url 'blog-details' slug=blog.slug_field %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
-                    <p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
+                    <p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.blog_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
                     <p class="post-content">
                         {{blog.blog_Details|safe|truncatewords:"36"|linebreaks}}
                         <a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>

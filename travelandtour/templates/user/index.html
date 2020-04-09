@@ -95,18 +95,20 @@
 					<div class="row">
 						<ul class="portfolio-carousel ">
                             {% for package in packages %}
-							<li>
-								<div class="inner-content ">
-									<img src="{{ package.img.url}}">
-									<div class="overlay-content">
-										<h3>{{package.package_name}}</h3>
-										<h5>{{package.total_days}}</h5>
-										<h4>Start From:Rs.{{package.price}}</h4>
-										<p><a href="{% url 'package_details' slug=package.slug_field %}"><button type="button" class="btn btn-outline-primary">View Details</button></a></p>
-<!--										<p><a href="#" >Click Here</a>for details</p>-->
-									</div>
-								</div>
-							</li>
+								{% if package.featured_package == True %}
+									<li>
+										<div class="inner-content ">
+											<img src="{{ package.img.url}}">
+											<div class="overlay-content">
+												<h3>{{package.package_name}}</h3>
+												<h5>{{package.total_days}}</h5>
+												<h4>Start From:Rs.{{package.price}}</h4>
+												<p><a href="{% url 'package_details' slug=package.slug_field %}"><button type="button" class="btn btn-outline-primary">View Details</button></a></p>
+		<!--										<p><a href="#" >Click Here</a>for details</p>-->
+											</div>
+										</div>
+									</li>
+								{% endif %}
                             {% endfor %}
 						</ul>
 						<ul class="portfolio-nav">
@@ -127,18 +129,20 @@
 					<div class="card-deck">
 						<ul class="team-carousel">
 							{% for package in packages %}
-							<li>
-								<div class="card shadow cardset1">
-									<div class="card-body">
-										<div class="img-section">
-											<img class="card-img-top img-fluid" src="{{ package.img.url}}" alt="Card image cap">
-										</div>
-										<h3 class="card-title"><h3>{{package.package_name}}</h3>
-										<a href="{% url 'package_details' slug=package.slug_field %}" class="btn btn-primary">View Details</a>
+								{% if package.best_selling_package == True %}
+									<li>
+										<div class="card shadow cardset1">
+											<div class="card-body">
+												<div class="img-section">
+													<img class="card-img-top img-fluid" src="{{ package.img.url}}" alt="Card image cap">
+												</div>
+												<h3 class="card-title"><h3>{{package.package_name}}</h3>
+												<a href="{% url 'package_details' slug=package.slug_field %}" class="btn btn-primary">View Details</a>
 
-									</div>
-								</div>
-							</li>
+											</div>
+										</div>
+									</li>
+								{% endif %}
 							{% endfor %}
 						</ul>
 					</div>
@@ -159,43 +163,18 @@
 				</div>
 				<div class="container">
 					<div class="row">
-						{% for blog in blogs %}
-							{% if blog.blog_name == "Everest Region Trek" %}
+						{% for blog in blogs|slice:"0:3" %}
+
 							<div class="col-md-4" >
 								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
 								<h3><a href="{% url 'blog-details' slug=blog.slug_field %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
-								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
+								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.blog_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
 								<p class="post-content">
 									{{blog.blog_Details|safe|truncatewords:"36"|linebreaks}}
 									<a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>
 								</p>
 
 							</div>
-							{% endif %}
-
-						{% if blog.blog_name == "Dharan" %}
-							<div class="col-md-4" >
-								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
-								<h3><a href="{% url 'blog-details' slug=blog.slug_field %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
-								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
-								<p class="post-content">
-									{{blog.blog_Details|safe|truncatewords:"40"|linebreaks}}
-									<a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>
-								</p>
-							</div>
-							{% endif %}
-
-						{% if blog.blog_name == "Pokhara" %}
-							<div class="col-md-4" >
-								<img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
-								<h3><a href="{% url 'blog-details' slug=blog.slug_field %}"  class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
-								<p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.bolg_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
-								<p class="post-content">
-									{{blog.blog_Details|safe|truncatewords:"40"|linebreaks}}
-									<a href="{% url 'blog-details' slug=blog.slug_field %}" class="btn btn-primary">Read More</a>
-								</p>
-							</div>
-							{% endif %}
 						{% endfor %}
 					</div>
 				</div>
@@ -205,7 +184,7 @@
 
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6 bg-image">
 						<h4>Guest Testimonials</h4>
 						<ul class="last-slider-carousel" id="last-slider">
 							<li class="slider-content">

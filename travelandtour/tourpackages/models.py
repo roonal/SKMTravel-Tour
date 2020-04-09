@@ -68,6 +68,7 @@ class Booking(models.Model):
     children = models.CharField(choices=CHILDREN, max_length=128, default=0)
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
+    booking_verification = models.BooleanField(default=False)
     # request_package = models.ForeignKey(Packages, on_delete=models.CASCADE)
 
     def __str__(self):
