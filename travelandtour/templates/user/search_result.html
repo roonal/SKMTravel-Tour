@@ -1,0 +1,40 @@
+{% extends 'shared/header-footer.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/packages.css' %}">
+</head>
+<style>
+    .search_result{
+
+        }
+</style>
+
+<div class="packages-content">
+    <div class="container">
+        <div class="blogs-header center">
+					<h1 >Search Results</h1>
+				</div>
+        <div class="row">
+            <div class="card-deck">
+                {% for package in result %}
+                        <div class="col-lg-3 col-md-4 col-sm-6 search_result">
+                            <div class="card ">
+                                <img src="{{ package.img.url}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <a href="{% url 'package_details' slug=package.slug_field %}">
+                                        <h5 class="card-title">{{package.package_name}}</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

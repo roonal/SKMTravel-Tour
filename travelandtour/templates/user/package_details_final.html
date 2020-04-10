@@ -3,6 +3,8 @@
 
 {% block content %}
 	<link rel="stylesheet" type="text/css" href=" {% static 'css/package_details.css' %}">
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/guider-style.css' %}">
+
 
     <section class="package_header">
 		<div class="container">
@@ -52,19 +54,27 @@
 
 				</div>
 				<div id="itinerary" class="tab-pane ">
-					<p>{% for act in activities %}
+					{% if package.package_type.package_type == "Activities" %}
+						<p>{% for act in activities %}
+								<h4>{{act.plan_id.day}}
+								{{act.plan_id.travel_details}}<br></h4>
+								<h5>Travel Details:</h5>{{act.activities_id.activities}}<br>
+							{% endfor %}
+					{% else %}
+						<p>{% for act in activities %}
 							<h4>{{act.plan_id.day}}:
 							{{act.plan_id.travel_details}}<br></h4>
 							<h5>Travel Details:</h5>{{act.activities_id.activities}}<br>
 							<h5>Travel Mode:</h5>{{act.activities_id.travel_mode}}<br>
 							<h5>Difficulty Level:</h5>{{act.plan_id.difficulty_level}}<br>
 
-						{% empty %}  <!-- if no activities is present for particular packages then -->
-							{% for plan in package_plan %}
-								<h4>{{plan.day}}:
-								{{plan.travel_details}}<br></h4>
-							 {% endfor %}
-						{% endfor %}
+							{% empty %}  <!-- if no activities is present for particular packages then -->
+								{% for plan in package_plan %}
+									<h4>{{plan.day}}:
+									{{plan.travel_details}}<br></h4>
+								 {% endfor %}
+							{% endfor %}
+					{% endif %}
 
 					</p>
 				</div>
@@ -75,10 +85,24 @@
 						<h5>Difficulty :</h5>{{package.difficulty}}<br>
 						<h5>Maximum Altitude :</h5>{{package.max_altitude}}<br>
 						<h5>Guider Details :</h5>
-						{% for guide in guides %}
-								<h4>{{guide.name}}:
-								</h4>
-						{% endfor %}
+
+							<section class="our-webcoderskull padding-lg">
+							  <div class="container">
+								<ul class="row">
+									{% for guide in guides %}
+									  <li class="col-12 col-md-6 col-lg-3 list-items">
+										  <div class="cnt-block equal-hight" style="height: 349px;">
+											<figure><img src="{{ guide.staff_img.url}}" class="img-responsive" alt=""></figure>
+											<h4 class="name">{{guide.name}}</h4>
+											<h6>{{guide.phone_number}}</h6>
+											  <h6>{{guide.email}}</h6>
+										  </div>
+									  </li>
+									{% endfor %}
+								</ul>
+							  </div>
+							</section>
+
 
 					</p>
 				</div>

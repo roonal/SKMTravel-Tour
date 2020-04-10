@@ -22,22 +22,6 @@ class StaffRole(models.Model):
         return self.role
 
 
-class Staff(models.Model):
-    staff_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=10)
-    email = models.EmailField()
-    join_date = models.DateField()
-    salary = models.IntegerField()
-    staff_img = models.ImageField(upload_to='Package_Images/')
-    role_id = models.ForeignKey(StaffRole, on_delete=models.CASCADE)
-    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
 class PackageType(models.Model):
     package_type_id = models.AutoField(primary_key=True)
     package_type = models.CharField(max_length=30)
@@ -58,7 +42,6 @@ class Packages(models.Model):
     difficulty = models.CharField(max_length=20)
     overview = models.TextField()
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-    staff_id = models.ManyToManyField(Staff, default=1, null=True, blank=True)
     package_type = models.ForeignKey(PackageType, on_delete=models.CASCADE)
     featured_package = models.BooleanField(default=False)
     best_selling_package = models.BooleanField(default=False)
@@ -70,6 +53,23 @@ class Packages(models.Model):
     def save(self, *args, **kwargs):
         self.slug_field = slugify(self.package_name)
         super(Packages, self).save(*args, **kwargs)
+
+
+class Staff(models.Model):
+    staff_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=10)
+    email = models.EmailField()
+    join_date = models.DateField()
+    salary = models.IntegerField()
+    staff_img = models.ImageField(upload_to='Package_Images/')
+    role_id = models.ForeignKey(StaffRole, on_delete=models.CASCADE)
+    package_guide = models.ManyToManyField(Packages, default=1, null=True, blank=True)
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class PackageReview(models.Model):

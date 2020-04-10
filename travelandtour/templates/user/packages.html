@@ -5,10 +5,25 @@
 <head>
     <link rel="stylesheet" type="text/css" href=" {% static 'css/packages.css' %}">
 </head>
-
+<style>
+</style>
 
 <div class="packages-content">
     <div class="container">
+        <div class="row justify-content-center">
+				{% if messages %}
+				<ul class="messages">
+					<br>
+					{% for message in messages %}
+						{% if message.tags == "error" %}
+							<div class="alert alert-error">
+								<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</div>
         <div class="row">
             <div class="col-md-3">
                 <!-- Tabs nav -->

@@ -3,6 +3,18 @@ from .models import Company
 from .models import PackagePlan, PackageActivities, Destination, Activities, Staff, StaffRole, Packages,\
     PackageType, PackageCostInfo, PackageReview
 from . import models
+from django.contrib import admin
+from.models import Staff
+from.forms import StaffForm
+
+
+class StaffAdmin(admin.ModelAdmin):
+    fields = ('name', 'address', 'phone_number',
+                'email', 'join_date', 'salary', 'staff_img', 'role_id', 'company_id', 'package_guide')
+    form = StaffForm
+
+    class Media:
+        js = ("js/base.js",)
 
 
 class PackagesAdmin(admin.ModelAdmin):
@@ -15,7 +27,7 @@ class PackagesAdmin(admin.ModelAdmin):
         ('max_altitude', 'best_season'),
         ('img', 'difficulty'),
         ('company_id', 'package_type'),
-        ('staff_id', 'slug_field'),
+        ('slug_field'),
         'overview',
         ('featured_package', 'best_selling_package')
     )
@@ -36,7 +48,7 @@ class ReviewAdmin(admin.ModelAdmin):
 admin.site.register(Company)
 admin.site.register(Packages, PackagesAdmin)
 admin.site.register(Destination)
-admin.site.register(Staff)
+admin.site.register(Staff, StaffAdmin)
 admin.site.register(PackagePlan)
 admin.site.register(Activities)
 admin.site.register(PackageActivities)

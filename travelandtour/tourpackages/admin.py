@@ -31,7 +31,7 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('name', 'selected_package', 'booking_verification')
     list_filter = ('name', 'selected_package', 'booking_verification')
     search_fields = ('selected_package',)
-    actions = ('check_booking',)
+    actions = ('check_booking', 'uncheck_booking')
 
     def check_booking(self, request, queryset):
         count = queryset.update(booking_verification=True)
@@ -56,6 +56,11 @@ class BookingAdmin(admin.ModelAdmin):
 
                         send_mail(subject, message, email_from, recipient, fail_silently=False)
     check_booking.short_description = "Verify The Selected Booking Request"
+
+    def uncheck_booking(self, request, queryset):
+        count = queryset.update(booking_verification=False)
+        self.message_user(request, '{} Booking have been unverified successfully.'.format(count))
+    uncheck_booking.short_description = "unverify The Selected Booking request"
 
 
 admin.site.register(EducationalTour)

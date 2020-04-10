@@ -10,6 +10,9 @@
     .blog-field{
         margin-bottom:30px;
     }
+    .blog-image{
+        width:100%;
+     }
 </style>
 
 <section class="blogs section-padding">
@@ -22,7 +25,7 @@
         <div class="row">
             {% for blog in blogs %}
                 <div class="col-md-4 blog-field" >
-                    <img src="{{ blog.img.url}}" alt="post1" class="img-responsive">
+                    <img src="{{ blog.img.url}}" alt="post1" class="img-responsive blog-image">
                     <h3><a href="{% url 'blog-details' slug=blog.slug_field %}" class="secondary-sky-blue">{{blog.blog_name}}</a></h3>
                     <p class="posted-by"> <i>by</i> <span class="primary bold">{{blog.blog_by}}</span> <i>on</i> <b>{{blog.blog_date}}</b></p>
                     <p class="post-content">

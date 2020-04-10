@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .forms import SignUpForm, BookingForm
+from .forms import SignUpForm
 
 
 def register(request):
@@ -47,32 +47,3 @@ def user_logout(request):
 
 def user_profile(request):
     return render(request, 'user-auth/profile.html')
-
-
-def package_booking(request):
-    if request.method == "POST":
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('index')
-    else:
-        form = BookingForm()
-    return render(request, 'user/test_form.html', {'form': form})
-
-
-def packages(request):
-    # context = {'packages': Packages.objects.all()}
-    return render(request, 'user/packages.html')
-
-
-def profile_change(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('index')
-    else:
-        form = SignUpForm()
-    return render(request, 'user-auth/profile_change_form.html', {'form': form})

@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import EducationalTourForm, BookingForm, TripCustomizeForm, ReviewForm, AddBlogForm
 from .models import AboutNepal, Blog, Gallery, UserRequest
@@ -96,8 +97,12 @@ def package_booking(request, slug):
 
             send_mail(subject, message, email_from, recipient, fail_silently=False)
 
-            messages.success(request, 'Successfully requested for the package booking')
-            return redirect('booking_form', slug=slug)
+            country_name = form.cleaned_data.get('country')
+            if country_name == 'NP':
+                return redirect('payment_booking', slug=slug)
+            else:
+                messages.success(request, 'Successfully requested for the package booking')
+                return redirect('booking_form', slug=slug)
         else:
             messages.warning(request, 'Please correct the error below.')
     else:
@@ -225,3 +230,26 @@ def add_blog(request):
         form = AddBlogForm()
     context = {'form': form, 'packages': Packages.objects.all()}
     return render(request, 'user/add_blog.html', context)
+
+
+def search_request(request):
+    if request.method == "POST":
+        user_input = request.POST['search-tag']
+        if user_input:
+            match = Packages.objects.filter(Q(package_name__icontains=user_input) | Q(total_days__icontains=user_input))
+            if match:
+                return render(request, 'user/search_result.html', {'result': match})
+            else:
+                messages.error(request, "No Search Result Found. Here is the list of available packages.")
+                context = {'packages': Packages.objects.all()}
+                return render(request, 'user/packages.html', context)
+        else:
+            context = {'packages': Packages.objects.all()}
+            return render(request, 'user/packages.html', context)
+    else:
+        context = {'packages': Packages.objects.all()}
+        return render(request, 'user/packages.html', context)
+
+
+def payment_booking(request, slug):
+    return render(request, 'user/payment_booking.html')

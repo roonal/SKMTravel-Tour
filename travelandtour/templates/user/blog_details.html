@@ -21,14 +21,14 @@
 		<div class="container">
             <div class="row blog-field">
                 <div class="col-sm-5">
-                <h4>Blog By: {{blog.bolg_by}}</h4>
+                <h4>Blog By: {{blog.blog_by}}</h4>
                 </div>
                  <div class="col-sm-5">
                     <h4>Published Date: {{blog.blog_date}}</h4>
                 </div>
             </div>
             <div class="row">
-                {{blog.blog_Details}}
+                {{blog.blog_Details|linebreaks}}
             </div>
 		</div>
 	</section>

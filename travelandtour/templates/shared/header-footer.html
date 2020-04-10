@@ -22,14 +22,37 @@
 		<!-- <script language="JavaScript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script> -->
 		<script type="text/javascript" src=" {% static 'js/caroufredsel.js' %}"></script> <!-- jquery plugin caroufredsel slider
 	-->
+	<style>
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 40px;
+  font-size: 15px;
+  border: 1px solid grey;
+  width:350px;
+}
 
+ .search-container button {
+  float: right;
+  padding: 7px 10px;
+  margin-top: 40px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+	</style>
 	</head>
 	<body id="main">
 		<header>
 			<div class="container">
 
 				<nav class="navbar navbar-expand-lg navbar-light navbar1">
-					<a class="logo " href="{% url 'index' %}"><img src="{% static 'img/skm_logo.png' %}" alt="logo" class="img-responsive">Shree Krishna Mankamana Travel and Tour</a>
+					<a class="logo " href="{% url 'index' %}"><img src="{% static 'img/skm_logo.png' %}" alt="logo" class="img-responsive"></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown1" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					</button>
@@ -37,6 +60,16 @@
 						<ul class="navbar-nav mr-auto">
 						</ul>
 						<ul class="navbar-nav">
+							<li class="nav-item">
+								<form method="post" action="{% url 'search' %}">
+									{% csrf_token %}
+									<div class="form-group search-container">
+										<input type="text" placeholder="Search with package name or package days" name="search-tag">
+      									<button type="submit"><i class="fa fa-search">Search</i></button>
+									</div>
+
+								</form>
+							</li>
 							<li class="nav-item">
 								<a class="nav-link" style="color:black;"><i class="fa fa-volume-control-phone" aria-hidden="true"></i>
 									<p>24/7 Support</p> <p>+9865521445</p></a>
@@ -129,15 +162,15 @@
 				<ul class="messages">
 					<br>
 					{% for message in messages %}
-						{% if message.tags == "success" %}
-							<div class="alert alert-success">
-								<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-							</div>
-						{% elif message.tags == "warning" %}
-							<div class="alert alert-warning">
-								<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-							</div>
-						{% endif %}
+                            {% if "success" in message.tags|safe %}
+                                <div class="alert alert-success">
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                </div>
+                            {% elif message.tags == "warning" %}
+                                <div class="alert alert-warning">
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                </div>
+						    {% endif %}
 					{% endfor %}
 				</ul>
 				{% endif %}

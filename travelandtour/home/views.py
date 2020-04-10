@@ -31,8 +31,7 @@ def package_details_final(request, slug):
                'cost_info': PackageCostInfo.objects.filter(package_cost__slug_field=slug),
                'review': PackageReview.objects.filter(package_id__slug_field=slug, review_verification=True),
                'packages': Packages.objects.all(),
-               # 'guides': Packages.objects.filter(staff_id__staff_id=3),
-               # 'guides': Staff.objects.raw(query),
+               'guides': Staff.objects.filter(package_guide__slug_field=slug),
 
 
                }

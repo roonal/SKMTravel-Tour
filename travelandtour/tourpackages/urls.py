@@ -3,6 +3,7 @@ from . import views
 from django.urls import include
 
 urlpatterns = [
+    path('search/', views.search_request, name="search"),
     path('educational_tour/', views.educational_tour, name="educational_tour"),
     path('package-booking/<slug>/', views.package_booking, name="booking_form"),
     path('customize-trip/<slug>', views.customize_trip, name="customize-trip"),
@@ -17,5 +18,6 @@ urlpatterns = [
     path('photo-gallery/', views.photo_gallery, name="photo-gallery"),
     path('add-review/', views.add_review, name="add-review"),
     path('user-request/', views.user_request, name="user-request"),
+    path('payment-booking/<slug>/', views.payment_booking, name="payment_booking"),
 
 ]

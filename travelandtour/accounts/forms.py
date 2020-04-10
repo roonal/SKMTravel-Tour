@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Booking
 from django_countries.data import COUNTRIES
 
 
@@ -21,18 +20,6 @@ class SignUpForm(UserCreationForm):
         return data
 
 
-class BookingForm(forms.ModelForm):
-    AIRPORT_PICKUP = (
-        ('yes', 'Yes'),
-        ('no', 'No')
-    )
 
-    airport_pickup = forms.ChoiceField(choices=AIRPORT_PICKUP, widget=forms.RadioSelect())
-    country = forms.ChoiceField(choices=sorted(COUNTRIES.items()))
-
-    class Meta:
-        model = Booking
-        fields = ('name', 'email', 'phone_number', 'address', 'airport_pickup', 'adults',
-                  'children', 'package_category', 'payment_mode')
 
 
