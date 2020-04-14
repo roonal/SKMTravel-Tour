@@ -3,11 +3,16 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+    .cancel{
+    width: 100%;
+    }
+</style>
 <body>
 <div class="container booking-form">
       <div class="row justify-content-center">
         <div class="col-8">
-          <h1 class="mt-2">Educational Tour Booking Form</h1>
+          <h1 class="mt-2">Organizational Tour Booking Form</h1>
 
           <hr class="mt-0 mb-4">
                 <form method="POST" class="post-form">
@@ -41,8 +46,13 @@
                           </div>
                         </div>
 
-                    <button type="submit" class="save btn btn-primary">Submit</button>
+                    <button type="submit" class="save btn btn-primary head-btn btn-lg btn-block">Submit</button>
                 </form>
+            <div class="row">
+                <div class="col-12">
+                    <a href="{% url  'packages'  %}"><button type="button" class="cancel btn btn-success head-btn btn-lg "> Cancel</button></a>
+                </div>
+            </div>
         </div>
       </div>
     </div>

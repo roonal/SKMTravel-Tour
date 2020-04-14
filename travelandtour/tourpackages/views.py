@@ -167,7 +167,7 @@ def customize_trip(request, slug):
             country = form.cleaned_data.get('country')
             address = form.cleaned_data.get('address')
 
-            subject = 'New Tou Customization request'
+            subject = 'New Tour Customization request'
             message = 'Dear admin of SKM Travel and Tour, you received a new tour customization request.' \
                       ' The details are as follow: ' + \
                       ' Requested By: {}, Requested Trip Name: {}, Email: {}, Country: {}, Address: {}' \

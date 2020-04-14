@@ -34,7 +34,7 @@ class PackagesAdmin(admin.ModelAdmin):
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('review_by', 'review_verification', 'review_date')
+    list_display = ('review_by', 'package_id', 'review_verification', 'review_date')
     list_filter = ('package_id', 'ratings')
     search_fields = ('package_id', 'ratings',)
     actions = ('check_review',)

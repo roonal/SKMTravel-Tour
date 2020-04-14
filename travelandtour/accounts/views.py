@@ -4,6 +4,8 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import SignUpForm
+from tourpackages.models import Booking
+from home.models import Packages
 
 
 def register(request):
@@ -46,4 +48,7 @@ def user_logout(request):
 
 
 def user_profile(request):
-    return render(request, 'user-auth/profile.html')
+    # username = request.user.username
+    # context = {'bookings': Booking.objects.filter(request_user=username), 'packages': Packages.objects.all()}
+    context = {'packages': Packages.objects.all()}
+    return render(request, 'user-auth/profile.html', context)

@@ -5,6 +5,7 @@ from django_countries.fields import CountryField
 # from home.models import Packages
 from django.utils.text import slugify
 from jsonschema import ValidationError
+from home.models import Packages
 
 from .utils import get_unique_slug
 
@@ -54,7 +55,7 @@ PAYMENT_MODE = (
 
 class Booking(models.Model):
     request_id = models.AutoField(primary_key=True)
-    selected_package = models.CharField(max_length=100, default="abc")
+    selected_package = models.CharField(max_length=100)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=20)
@@ -69,7 +70,7 @@ class Booking(models.Model):
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
     booking_verification = models.BooleanField(default=False)
-    # request_package = models.ForeignKey(Packages, on_delete=models.CASCADE)
+    request_user = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.name

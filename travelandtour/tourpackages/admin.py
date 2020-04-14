@@ -63,12 +63,24 @@ class BookingAdmin(admin.ModelAdmin):
     uncheck_booking.short_description = "unverify The Selected Booking request"
 
 
-admin.site.register(EducationalTour)
+class EducationalTourAdmin(admin.ModelAdmin):
+    list_display = ('name', 'organization_name', 'destination', 'total_days')
+    list_filter = ('name', 'total_days', 'total_people')
+    search_fields = ('name',)
+
+
+class CustomizeTripAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'trip_name', 'budget_per_person', 'duration')
+    list_filter = ('trip_name', 'budget_per_person', 'duration')
+    search_fields = ('trip_name', 'duration')
+
+
+admin.site.register(EducationalTour, EducationalTourAdmin)
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AboutNepal)
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Gallery)
-admin.site.register(CustomizeTrip)
+admin.site.register(CustomizeTrip, CustomizeTripAdmin)
 admin.site.register(UserRequest)
 
 

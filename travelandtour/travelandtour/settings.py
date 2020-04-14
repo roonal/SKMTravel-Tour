@@ -31,8 +31,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ronalniraula99@gmail.com'
-EMAIL_HOST_PASSWORD = 'ronaldo@7'
+EMAIL_HOST_USER = 'ronalniraula99@gmail.com' #setting host email address for sending email
+EMAIL_HOST_PASSWORD = 'ronaldo@7'            #setting email password
 EMAIL_USE_SSL = False
 
 # Application definition
@@ -44,11 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
-    'accounts',
-    'tourpackages',
-    'crispy_forms',
+    'home',                         #new application named as home
+    'accounts',                     #new application named as accounts
+    'tourpackages',                 #new application named as tourpackages
+    'crispy_forms',                 # application for managing django forms
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [

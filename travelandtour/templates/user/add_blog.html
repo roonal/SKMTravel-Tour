@@ -3,35 +3,41 @@
 {% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
+<style>
+    .cancel{
+    width: 100%;
+    }
+</style>
 
-<div class="container booking-form">
+    <div class="container booking-form">
       <div class="row justify-content-center">
         <div class="col-8">
           <h1 class="mt-2">Add Blog Section</h1>
           <hr class="mt-0 mb-4">
             <form method="POST" class="post-form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        {{ form.blog_name|as_crispy_field }}
-                        <div class="row">
-                              <div class="col-6">
-                               {{ form.blog_by|as_crispy_field }}
-                              </div>
-                              <div class="col-6">
-                                 {{ form.blog_date|as_crispy_field }}
-                              </div>
-                        </div>
-                        {{ form.blog_Details|as_crispy_field }}
-
-                        <div class="row">
-                            <div class="col-6">
-                                {{ form.img|as_crispy_field }}
+              {% csrf_token %}
+                  {{ form.blog_name|as_crispy_field }}
+                      <div class="row">
+                          <div class="col-6">
+                              {{ form.blog_by|as_crispy_field }}
+                          </div>
+                          <div class="col-6">
+                              {{ form.blog_date|as_crispy_field }}
                             </div>
-
-                        </div>
-
-
-                <button type="submit" class="save btn btn-primary">Post Your Blog</button>
+                      </div>
+                      {{ form.blog_Details|as_crispy_field }}
+                      <div class="row">
+                          <div class="col-6">
+                              {{ form.img|as_crispy_field }}
+                            </div>
+                      </div>
+                      <button type="submit" class="save btn btn-primary btn-lg btn-block">Post Your Blog</button>
             </form>
+            <div class="row">
+                <div class="col-12">
+                    <a href="{% url  'blog'  %}"><button type="button" class="cancel btn btn-success head-btn btn-lg "> Cancel</button></a>
+                </div>
+            </div>
         </div>
       </div>
 </div>

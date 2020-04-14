@@ -26,6 +26,19 @@ input[type=radio], .lbl {
     margin-top:12px;
 }
 
+input[type=text]  {
+  width: 100%;
+  padding: 9px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.cancel{
+    width: 100%;
+    }
+
 </style>
 <body>
 <div class="container booking-form">
@@ -35,9 +48,12 @@ input[type=radio], .lbl {
           <hr class="mt-0 mb-4">
                 <form method="POST" class="post-form">
                     {% csrf_token %}
+
+                    <input type="hidden" id="id_request_user" name="request_user"  value="{{ user.username }}" >
+
                     {% for package in tourpackages %}
                     <label for="id_selected_package" >Selected Package Name* </label>
-                            <input type="text" id="id_selected_package" name="selected_package"  value="{{ package.package_name }}" readonly>
+                        <input type="text" id="id_selected_package" name="selected_package"  value="{{ package.package_name }}" readonly>
                     {% endfor %}
                     <div class="row">
                         <div class="col-6">
@@ -91,20 +107,19 @@ input[type=radio], .lbl {
                           <div class="col-6">
                             {{ form.payment_mode|as_crispy_field }}
                           </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <button type="submit" class="save btn btn-primary btn-block btn-lg">Book</button>
                         </div>
+
                         </div>
                 </form>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                                 {% for package in tourpackages %}
-                                <a href="{% url 'package_details' slug=package.slug_field  %}"><button type="cancel" class="cancel btn btn-success btn-block btn-lg" >Cancel</button></a>
-<!--                                <button type="cancel" class="cancel btn btn-success btn-block btn-lg"><a href="{% url  'package_details' slug=package.slug_field  %}"> Cancel</a></button>-->
-                                {% endfor %}
+                                    <a href="{% url 'package_details' slug=package.slug_field  %}"><button type="button" class="cancel btn btn-success head-btn btn-lg">Cancel</button></a>
+                             {% endfor %}
                             </div>
                         </div>
-
         </div>
       </div>
     </div>
