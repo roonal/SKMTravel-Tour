@@ -5,12 +5,11 @@ from .models import EducationalTour, Booking, CustomizeTrip, Blog
 from django_countries.data import COUNTRIES
 from home.models import PackageReview
 
-
         
 class EducationalTourForm(forms.ModelForm):
     class Meta:
         model = EducationalTour
-        fields = ('name', 'address', 'email', 'number', 'organization_name', 'location', 'total_people', 'destination', 'total_days')
+        fields = ('name', 'address', 'email', 'number', 'organization_name', 'location', 'total_people', 'destination', 'total_days', 'user_id')
 
 
 class DateInput(forms.DateInput):
@@ -32,7 +31,7 @@ class ReviewForm(forms.ModelForm):
             "review_by": "Your Name",
             "review": "Please write your review here"
         }
-        fields = ('package_id', 'review_by', 'address', 'review_date', 'ratings', 'review')
+        fields = ('package_id', 'review_by', 'address', 'review_date', 'ratings', 'review', 'user_id')
         widgets = {
             'review_date': DateInput(),
         }
@@ -41,7 +40,7 @@ class ReviewForm(forms.ModelForm):
 class AddBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ('blog_name', 'blog_by', 'blog_date', 'blog_Details', 'img')
+        fields = ('blog_name', 'blog_by', 'blog_date', 'blog_Details', 'img', 'user_id')
         widgets = {
             'blog_date': DateInput(),
         }
@@ -61,8 +60,9 @@ class BookingForm(forms.ModelForm):
         help_texts = {
             'departure_date': 'At least 6 days more than the arrival date',
         }
-        fields = ('selected_package', 'request_user', 'name', 'email', 'phone_number', 'address', 'country', 'airport_pickup', 'adults',
-                  'arrival_date', 'departure_date', 'arrival_time',  'children', 'package_category', 'payment_mode')
+        fields = ('selected_package', 'name', 'email', 'phone_number', 'address', 'country', 'airport_pickup', 'adults',
+                  'arrival_date', 'departure_date', 'arrival_time',  'children', 'package_category',
+                  'payment_mode', 'user_id')
         widgets = {
             'arrival_date': DateInput(),
             'departure_date': DateInput(),
@@ -74,6 +74,6 @@ class TripCustomizeForm(forms.ModelForm):
     class Meta:
         model = CustomizeTrip
         fields = ('trip_name', 'adults', 'children',  'budget_per_person', 'duration', 'package_type', 'full_name', 'address',
-                  'email', 'phone', 'country', 'package_category', 'payment_mode', 'message')
+                  'email', 'phone', 'country', 'package_category', 'payment_mode', 'message', 'user_id')
 
 

@@ -3,7 +3,7 @@
 
 {% block content %}
 <head>
-    <link rel="stylesheet" type="text/css" href=" {% static 'css/packages.css' %}">
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/packages_final.css' %}">
 </head>
 <style>
     .search_result{
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="card-deck">
                 {% for package in result %}
-                        <div class="col-lg-3 col-md-4 col-sm-6 search_result">
+                        <div class="col-lg-3 col-md-4 col-sm-6 ">
                             <div class="card ">
                                 <img src="{{ package.img.url}}" class="card-img-top" alt="...">
                                 <div class="card-body">

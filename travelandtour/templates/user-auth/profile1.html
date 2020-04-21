@@ -2,7 +2,21 @@
 {% load static %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/packages_final.css' %}">
+    <style>
+        .card{
+    height:350px;
 
+}
+.card-deck .card img{
+  width:100%;
+  height: 55%;
+}
+.card a .btn{
+    text-align:center;
+    margin-left:45px;
+}
+    </style>
 
     <section class="header">
         <div class="heading">
@@ -22,11 +36,13 @@
         </div>
         </div>
 
-        <div class="packages-content">
+
     <div class="container">
         <div class="row">
             {% if bookings %}
+            <h3>Booked Packages</h3>
             <div class="card-deck">
+
                 {% for booking in bookings %}
                         <div class="col-lg-3 col-md-4 col-sm-6 search_result">
                             <div class="card ">
@@ -35,18 +51,18 @@
                                     <a href="{% url 'package_details' slug=booking.selected_package.slug_field %}">
                                         <h5 class="card-title">{{booking.selected_package.package_name}}</h5>
                                     </a>
+                                    <a href="{% url 'cancel_booking' id=booking.selected_package.package_id %}"><button class="btn btn-success" type="submit">Cancel Booking</button></a>
                                 </div>
                             </div>
                         </div>
                 {% endfor %}
             </div>
             {% else %}
-                <h4>No Any Bookings</h4>
+                <h4>No Any Bookings Yet</h4>
             {% endif %}
         </div>
     </div>
 
-</div>
 
 	</section>
 {% endblock %}

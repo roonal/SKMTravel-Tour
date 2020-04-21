@@ -48,12 +48,10 @@ input[type=text]  {
           <hr class="mt-0 mb-4">
                 <form method="POST" class="post-form">
                     {% csrf_token %}
-
-                    <input type="hidden" id="id_request_user" name="request_user"  value="{{ user.username }}" >
-
+                    <input type="hidden" id="id_user_id" name="user_id"  value="{{ user_id }}">
                     {% for package in tourpackages %}
                     <label for="id_selected_package" >Selected Package Name* </label>
-                        <input type="text" id="id_selected_package" name="selected_package"  value="{{ package.package_name }}" readonly>
+                        <input type="text" id="id_selected_package" name="selected_package"  value="{{ package.package_id }}" readonly>
                     {% endfor %}
                     <div class="row">
                         <div class="col-6">

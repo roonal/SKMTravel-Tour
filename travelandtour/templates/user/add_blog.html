@@ -16,6 +16,7 @@
           <hr class="mt-0 mb-4">
             <form method="POST" class="post-form" enctype="multipart/form-data">
               {% csrf_token %}
+                <input type="hidden" id="id_user_id" name="user_id"  value="{{ user_id }}" >
                   {{ form.blog_name|as_crispy_field }}
                       <div class="row">
                           <div class="col-6">

@@ -44,8 +44,11 @@ def educational_tour(request):
             messages.warning(request, 'Please correct the error below.')
     else:
         form = EducationalTourForm()
-    context = {'form': form, 'packages': Packages.objects.all()}
-    return render(request, 'user/educational_tour.html', context)
+    if request.session.has_key('is_logged'):
+        user_id = request.user.id
+        context = {'form': form, 'packages': Packages.objects.all(), 'user_id': user_id}
+        return render(request, 'user/educational_tour.html', context)
+    return redirect('login')
 
 
 def package_booking(request, slug):
@@ -107,8 +110,13 @@ def package_booking(request, slug):
             messages.warning(request, 'Please correct the error below.')
     else:
         form = BookingForm()
-    context = {'form': form, 'tourpackages': Packages.objects.filter(slug_field=slug), 'packages': Packages.objects.all()}
-    return render(request, 'user/test_form.html', context)
+
+    if request.session.has_key('is_logged'):
+        user_id = request.user.id
+        context = {'form': form, 'tourpackages': Packages.objects.filter(slug_field=slug),
+                   'packages': Packages.objects.all(), "user_id": user_id}
+        return render(request, 'user/test_form.html', context)
+    return redirect('login')
 
 
 def packages(request):
@@ -185,8 +193,11 @@ def customize_trip(request, slug):
             messages.warning(request, 'Please correct the error below.')
     else:
         form = TripCustomizeForm()
-    context = {'form': form, 'packages': Packages.objects.all(), 'tourpackages': Packages.objects.filter(slug_field=slug)}
-    return render(request, 'user/customize_trip1.html', context)
+    if request.session.has_key('is_logged'):
+        user_id = request.user.id
+        context = {'form': form, 'packages': Packages.objects.all(), 'tourpackages': Packages.objects.filter(slug_field=slug), 'user_id': user_id}
+        return render(request, 'user/customize_trip1.html', context)
+    return redirect('login')
 
 
 def add_review(request):
@@ -202,8 +213,11 @@ def add_review(request):
 
     else:
         form = ReviewForm()
-    context = {'form': form, 'packages': Packages.objects.all()}
-    return render(request, 'user/add_review.html', context)
+    if request.session.has_key('is_logged'):
+        user_id = request.user.id
+        context = {'form': form, 'packages': Packages.objects.all(), "user_id": user_id}
+        return render(request, 'user/add_review.html', context)
+    return redirect('login')
 
 
 def user_request(request):
@@ -228,8 +242,11 @@ def add_blog(request):
             messages.warning(request, 'Please correct the error below.')
     else:
         form = AddBlogForm()
-    context = {'form': form, 'packages': Packages.objects.all()}
-    return render(request, 'user/add_blog.html', context)
+    if request.session.has_key('is_logged'):
+        user_id = request.user.id
+        context = {'form': form, 'packages': Packages.objects.all(), "user_id": user_id}
+        return render(request, 'user/add_blog.html', context)
+    return redirect('login')
 
 
 def search_request(request):

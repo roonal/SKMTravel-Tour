@@ -6,7 +6,7 @@ from django_countries.fields import CountryField
 from django.utils.text import slugify
 from jsonschema import ValidationError
 from home.models import Packages
-
+from django.contrib.auth.models import User
 from .utils import get_unique_slug
 
 
@@ -25,6 +25,7 @@ class EducationalTour(models.Model):
     total_people = models.IntegerField()
     destination = models.CharField(max_length=200)
     total_days = models.IntegerField()
+    user_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -55,7 +56,7 @@ PAYMENT_MODE = (
 
 class Booking(models.Model):
     request_id = models.AutoField(primary_key=True)
-    selected_package = models.CharField(max_length=100)
+    selected_package = models.ForeignKey(Packages, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=20)
@@ -70,7 +71,7 @@ class Booking(models.Model):
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
     booking_verification = models.BooleanField(default=False)
-    request_user = models.CharField(max_length=50, null=True, blank=True)
+    user_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -109,6 +110,7 @@ class Blog(models.Model):
     blog_Details = models.TextField()
     img = models.ImageField(upload_to='Package_Images/')
     blog_verification = models.BooleanField(default=False)
+    user_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.blog_name
@@ -170,6 +172,7 @@ class CustomizeTrip(models.Model):
     package_category = models.CharField(choices=PACKAGE_CATEGORY, max_length=128, default=1)
     payment_mode = models.CharField(choices=PAYMENT_MODE, max_length=128, default=0)
     message = models.TextField(null=True, blank=True)
+    user_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
 
 class UserRequest(models.Model):

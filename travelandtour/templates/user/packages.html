@@ -3,10 +3,9 @@
 
 {% block content %}
 <head>
-    <link rel="stylesheet" type="text/css" href=" {% static 'css/packages.css' %}">
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/packages_final.css' %}">
 </head>
-<style>
-</style>
+<body>
 
 <div class="packages-content">
     <div class="container">
@@ -24,7 +23,7 @@
 				</ul>
 				{% endif %}
 			</div>
-        <div class="row">
+        <div class="row content">
             <div class="col-md-3">
                 <!-- Tabs nav -->
                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -54,7 +53,6 @@
                     </div>
             </div>
 
-
             <div class="col-md-9">
                  <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
@@ -77,7 +75,6 @@
 	                        </div>
                         </div>
                     </div>
-
                 <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" >
                      <div class="row">
                         	<div class="card-deck">
@@ -192,6 +189,6 @@
     </div>
 
 
-
+</body>
 
 {% endblock %}

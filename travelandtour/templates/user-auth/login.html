@@ -22,11 +22,12 @@
                     {{ field|as_crispy_field }}
                   </p>
                     {% endfor %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}"/>
                      <button class="btn btn-primary" type="submit" style="text-align:center;">Login</button><br>
                     <a href="{% url 'password_reset' %}">Forget Password</a>
                 </form>
             <br>
-                If you don't have an account <a href="{% url 'register'  %}" ><strong>Register</strong></a> instead.
+                If you don't have an account <a href="{% url 'register'  %}?next={{ request.GET.next }}" ><strong>Register</strong></a> instead.
         </div>
       </div>
 </div>
