@@ -16,6 +16,10 @@
     text-align:center;
     margin-left:45px;
 }
+.card .btncancel{
+    text-align:center;
+    margin-left:0px;
+}
     </style>
 
     <section class="header">
@@ -51,7 +55,15 @@
                                     <a href="{% url 'package_details' slug=booking.selected_package.slug_field %}">
                                         <h5 class="card-title">{{booking.selected_package.package_name}}</h5>
                                     </a>
+                                        {{booking.selected_package.package_id}}
+                                        {% for a in list %}
+                                            {{a}}
+                                            {% if a == booking.selected_package.package_id %}
+                                                <button class="btn btn-primary btncancel" type="submit">Cancel request pending</button>
+                                            {% endif %}
+                                        {% endfor %}
                                     <a href="{% url 'cancel_booking' id=booking.selected_package.package_id %}"><button class="btn btn-success" type="submit">Cancel Booking</button></a>
+
                                 </div>
                             </div>
                         </div>

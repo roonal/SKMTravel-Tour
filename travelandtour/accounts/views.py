@@ -61,11 +61,19 @@ def user_logout(request):
     return redirect('index')
 
 
+abc = []
+
+
 def user_profile(request):
     userid = request.user.id
-    context = {'bookings': Booking.objects.filter(user_id=userid), 'packages': Packages.objects.all()}
-    # context = {'packages': Packages.objects.all()}
-    return render(request, 'user-auth/profile1.html', context)
+    if abc:
+        for i in range(0, len(abc)):
+            abc[i] = int(abc[i])
+        context = {'bookings': Booking.objects.filter(user_id=userid), 'packages': Packages.objects.all(), 'list':abc}
+        return render(request, 'user-auth/profile1.html', context)
+    else:
+        context = {'bookings': Booking.objects.filter(user_id=userid), 'packages': Packages.objects.all()}
+        return render(request, 'user-auth/profile1.html', context)
 
 
 def cancel_booking(request, id):
@@ -88,6 +96,6 @@ def cancel_booking(request, id):
     send_mail(subject, message, email_from, recipient, fail_silently=False)
 
     messages.success(request, 'Successfully requested for the booking cancellation')
-    request.session['package_id'] = id
+    abc.append(id)
     return redirect('profile')
 
